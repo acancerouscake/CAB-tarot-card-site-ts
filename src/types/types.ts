@@ -14,3 +14,13 @@ export interface CardResponse {
 	nhits: number;
 	cards: CardType[];
 }
+
+export interface CardsJSON {
+	cards: CardJSONImageType[];
+}
+
+export interface CardJSONImageType {
+	name: string;
+	number: string;
+	img: string;
+}

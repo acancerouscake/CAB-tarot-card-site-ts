@@ -4,21 +4,10 @@ import {Card, CardResponse} from "../types/types";
 export default function Home() {
 	const cardSpreadVals = ["3", "6", "10", "12"];
 	const [numberOfCards, setNumberOfCards] = useState<number>();
-	const [tarotCards, setTarotCards] = useState<Card[]>([
-		{
-			type: "",
-			name_short: "",
-			name: "",
-			value: "",
-			value_int: 0,
-			meaning_up: "",
-			meaning_rev: "",
-			desc: "",
-			suit: "",
-		},
-	]);
+	const [tarotCards, setTarotCards] = useState<Card[]>([]);
 
 	const fetchCards = async (noOfCards: number) => {
+		setTarotCards([]);
 		if (noOfCards) {
 			try {
 				const response = await fetch(
@@ -37,6 +26,7 @@ export default function Home() {
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
 		const buttonVal = (e.target as HTMLButtonElement).value;
+		setNumberOfCards(0);
 		setNumberOfCards(parseInt(buttonVal));
 	};
 
@@ -47,6 +37,8 @@ export default function Home() {
 			});
 	}, [numberOfCards]);
 
+	console.log(tarotCards);
+
 	return (
 		<div>
 			<h1>Home</h1>
@@ -56,24 +48,43 @@ export default function Home() {
 						onClick={handleButtonClick}
 						name={`${spreadVal} Cards`}
 						value={spreadVal}
+						key={spreadVal}
 					>
-                        { `${ spreadVal }` } Cards
+						{`${spreadVal}`} Cards
 					</button>
 				);
 			})}
-
-			{tarotCards &&
-				tarotCards.map((card) => {
-					return (
-						<div key={card.value_int} style={{border: "1px white solid"}}>
-							<p>{card.desc}</p>
-							<p>{card.name}</p>
-							<p>{card.type}</p>
-							<p>{card.meaning_up}</p>
-							<p> {card.meaning_rev}</p>
-						</div>
-					);
-				})}
+			<div
+				style={{
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+					flexWrap: "wrap",
+				}}
+			>
+				{tarotCards.length >= 3 ? (
+					tarotCards.map((card) => {
+						return (
+							<div
+								key={card.value_int}
+								style={{
+									border: "1px white solid",
+									height: "450px",
+									width: "300px",
+								}}
+								title={card.desc}
+							>
+								<p>{card.name}</p>
+								<p>{card.type}</p>
+								<p>{card.meaning_up}</p>
+								<p> {card.meaning_rev}</p>
+							</div>
+						);
+					})
+				) : (
+					<></>
+				)}
+			</div>
 		</div>
 	);
 }

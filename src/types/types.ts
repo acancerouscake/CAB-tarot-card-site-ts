@@ -1,4 +1,4 @@
-export interface Card {
+export interface CardType {
 	type: string;
 	name_short: string;
 	name: string;
@@ -12,5 +12,5 @@ export interface Card {
 
 export interface CardResponse {
 	nhits: number;
-	cards: Card[];
+	cards: CardType[];
 }

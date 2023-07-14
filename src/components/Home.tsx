@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
-import {Card, CardResponse} from "../types/types";
+import {CardType, CardResponse} from "../types/types";
+import TarotCard from "./TarotCard";
 
 export default function Home() {
 	const cardSpreadVals = ["3", "6", "10", "12"];
 	const [numberOfCards, setNumberOfCards] = useState<number>();
-	const [tarotCards, setTarotCards] = useState<Card[]>([]);
+	const [tarotCards, setTarotCards] = useState<CardType[]>([]);
 
 	const fetchCards = async (noOfCards: number) => {
 		setTarotCards([]);
@@ -74,10 +75,7 @@ export default function Home() {
 								}}
 								title={card.desc}
 							>
-								<p>{card.name}</p>
-								<p>{card.type}</p>
-								<p>{card.meaning_up}</p>
-								<p> {card.meaning_rev}</p>
+								<TarotCard card={card} />
 							</div>
 						);
 					})

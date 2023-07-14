@@ -10,7 +10,6 @@ export default function Home() {
 	const [tarotCards, setTarotCards] = useState<CardType[]>([]);
 	const [loading, setIsLoading] = useState<boolean>(false);
 	const cards = TarotImages as CardsJSON;
-	console.log(cards);
 
 	const fetchCards = async (noOfCards: number) => {
 		setIsLoading(true);
@@ -58,7 +57,16 @@ export default function Home() {
 			}}
 		>
 			<h1>Mystic Tarot </h1>
-			<div>
+			<div
+				style={{
+					display: "flex",
+					justifyContent: "space-evenly",
+					alignItems: "center",
+					flexDirection: "row",
+					width: "50vw",
+					height: "10vh",
+				}}
+			>
 				{cardSpreadVals.map((spreadVal) => {
 					return (
 						<button

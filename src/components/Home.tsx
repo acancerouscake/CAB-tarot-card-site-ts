@@ -4,62 +4,70 @@ import TarotCard from "./TarotCard";
 import Loading from "./Loading";
 import * as TarotImages from "../json/tarot-images.json";
 
+//TODO: Make fetch(78cards) work, retrieve cards based on number from button click
+
 export default function Home() {
 	const cardSpreadVals = ["3", "6", "10", "12"];
 	const [numberOfCards, setNumberOfCards] = useState<number>();
 	const [tarotCards, setTarotCards] = useState<CardType[]>([]);
+	const [dealtCards, setDealtCards] = useState<CardType[]>([]);
 	const [loading, setIsLoading] = useState<boolean>(false);
 	const {cards} = TarotImages as CardsJSON;
 
-	console.log(cards);
-
-	const getImagesForCards = (ApiCardData: CardType[]) => {
-		ApiCardData.forEach((cardAPI) => {
+	const getImagesForCards = (apiCardData: CardType[]) => {
+		apiCardData.forEach((cardAPI) => {
 			cards.forEach((cardJSON) => {
 				if (cardAPI.name === cardJSON.name) {
 					return (cardAPI.img = cardJSON.img);
 				}
 			});
-			setTarotCards(ApiCardData);
 		});
+		randomizeCards(apiCardData);
 	};
 
-	const fetchCards = async (noOfCards: number) => {
-		setIsLoading(true);
-		setTarotCards([]);
-		if (noOfCards) {
-			try {
-				const response = await fetch(
-					`https://tarot-api-3hv5.onrender.com/api/v1/cards/random?n=${noOfCards}`
-				);
-				const data = (await response.json()) as CardResponse;
-				getImagesForCards(data.cards);
-
-				setIsLoading(false);
-			} catch (e) {
-				console.log("error :>> ", e);
-				setIsLoading(false);
-			}
+	const randomizeCards = (cards: CardType[]) => {
+		for (let i = cards.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[cards[i], cards[j]] = [cards[j], cards[i]];
 		}
-		return;
+		setTarotCards(cards);
+	};
+
+	const fetchCards = async () => {
+		setIsLoading(true);
+		try {
+			const response = await fetch(`https://tarot-api-3hv5.onrender.com/api/v1/`);
+			const data = (await response.json()) as CardResponse;
+			getImagesForCards(data.cards);
+			setIsLoading(false);
+		} catch (e) {
+			console.log("error :>> ", e);
+			setIsLoading(false);
+		}
+	};
+
+	const dealCards = (noOfCards: number) => {
+		const tmpArr: CardType[] = [];
+		for (let i = 0; i < noOfCards; i++) {
+			tmpArr.push(tarotCards[i]);
+		}
+		setDealtCards(tmpArr);
 	};
 
 	const handleButtonClick = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
-		const buttonVal = (e.target as HTMLButtonElement).value;
 		setNumberOfCards(0);
+		const buttonVal = (e.target as HTMLButtonElement).value;
 		setNumberOfCards(parseInt(buttonVal));
+		numberOfCards && dealCards(numberOfCards);
 	};
 
 	useEffect(() => {
-		numberOfCards &&
-			fetchCards(numberOfCards).catch((e) => {
-				console.log(e);
-			});
-	}, [numberOfCards]);
-
-	console.log(tarotCards);
+		fetchCards().catch((e) => {
+			console.log(e);
+		});
+	}, []);
 
 	return (
 		<div
@@ -105,7 +113,7 @@ export default function Home() {
 				{loading ? (
 					<Loading />
 				) : (
-					tarotCards.map((card) => {
+					dealtCards.map((card) => {
 						return (
 							<div key={card.value_int}>
 								<TarotCard card={card} />

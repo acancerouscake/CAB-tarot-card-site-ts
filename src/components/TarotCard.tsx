@@ -20,6 +20,8 @@ const TarotCard = ({card}: TarotCardProps) => {
 				width: "25vw",
 				minWidth: "200px",
 				height: "400px",
+				color: " black",
+				backgroundColor: "white",
 			}}
 		>
 			<img src={img} style={{width: "150px"}} title={name}></img>

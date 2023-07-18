@@ -8,6 +8,7 @@ export interface CardType {
 	meaning_rev: string;
 	desc: string;
 	suit?: string;
+	img?: string;
 }
 
 export interface CardResponse {

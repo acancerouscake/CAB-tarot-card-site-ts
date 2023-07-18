@@ -9,7 +9,20 @@ export default function Home() {
 	const [numberOfCards, setNumberOfCards] = useState<number>();
 	const [tarotCards, setTarotCards] = useState<CardType[]>([]);
 	const [loading, setIsLoading] = useState<boolean>(false);
-	const cards = TarotImages as CardsJSON;
+	const {cards} = TarotImages as CardsJSON;
+
+	console.log(cards);
+
+	const getImagesForCards = (ApiCardData: CardType[]) => {
+		ApiCardData.forEach((cardAPI) => {
+			cards.forEach((cardJSON) => {
+				if (cardAPI.name === cardJSON.name) {
+					return (cardAPI.img = cardJSON.img);
+				}
+			});
+			setTarotCards(ApiCardData);
+		});
+	};
 
 	const fetchCards = async (noOfCards: number) => {
 		setIsLoading(true);
@@ -20,7 +33,8 @@ export default function Home() {
 					`https://tarot-api-3hv5.onrender.com/api/v1/cards/random?n=${noOfCards}`
 				);
 				const data = (await response.json()) as CardResponse;
-				setTarotCards(data.cards);
+				getImagesForCards(data.cards);
+
 				setIsLoading(false);
 			} catch (e) {
 				console.log("error :>> ", e);
@@ -93,15 +107,7 @@ export default function Home() {
 				) : (
 					tarotCards.map((card) => {
 						return (
-							<div
-								key={card.value_int}
-								style={{
-									border: "1px white solid",
-									height: "450px",
-									width: "300px",
-								}}
-								title={card.desc}
-							>
+							<div key={card.value_int}>
 								<TarotCard card={card} />
 							</div>
 						);

@@ -5,7 +5,7 @@ interface TarotCardProps {
 }
 
 const TarotCard = ({card}: TarotCardProps) => {
-	const {name, type, meaning_up, meaning_rev} = card;
+	const {name, type, meaning_up, meaning_rev, img} = card;
 
 	return (
 		<div
@@ -14,12 +14,17 @@ const TarotCard = ({card}: TarotCardProps) => {
 				justifyContent: "center",
 				alignItems: "center",
 				flexDirection: "column",
+				textAlign: "center",
+				border: "1px solid white",
+				padding: "10px",
+				width: "25vw",
+				minWidth: "200px",
+				height: "400px",
 			}}
 		>
-			<p>{name}</p>
+			<img src={img} style={{width: "150px"}} title={name}></img>
 			<p>{type}</p>
-			<p>{meaning_up}</p>
-			<p> {meaning_rev}</p>
+			<p style={{fontSize: "1.2vmin"}}>{meaning_up}</p>
 		</div>
 	);
 };

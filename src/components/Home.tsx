@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {CardType, CardResponse, CardJSONImageType, CardsJSON} from "../types/types";
+import {CardType, CardResponse, CardsJSON} from "../types/types";
 import TarotCard from "./TarotCard";
 import Loading from "./Loading";
 import * as TarotImages from "../json/tarot-images.json";

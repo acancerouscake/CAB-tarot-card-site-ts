@@ -5,7 +5,7 @@ interface TarotCardProps {
 }
 
 const TarotCard = ({card}: TarotCardProps) => {
-	const {name, type, meaning_up, meaning_rev, img} = card;
+	const {name, type, meaning_up, img} = card;
 
 	return (
 		<div>

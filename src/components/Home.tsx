@@ -29,6 +29,7 @@ export default function Home() {
 			[cards[i], cards[j]] = [cards[j], cards[i]];
 		}
 		setTarotCards(cards);
+		setIsLoading(false);
 	};
 
 	const fetchCards = async () => {
@@ -37,7 +38,6 @@ export default function Home() {
 			const response = await fetch(`https://tarot-api-3hv5.onrender.com/api/v1/`);
 			const data = (await response.json()) as CardResponse;
 			getImagesForCards(data.cards);
-			setIsLoading(false);
 		} catch (e) {
 			console.log("error :>> ", e);
 			setIsLoading(false);
@@ -78,80 +78,94 @@ export default function Home() {
 				justifyContent: "flex-start",
 				alignItems: "center",
 				flexDirection: "column",
-				minHeight: "100vh",
 				width: "100vw",
 			}}
 		>
 			<h1>Mystic Tarot </h1>
+
 			<div
 				style={{
 					display: "flex",
-					justifyContent: "space-evenly",
+					justifyContent: "center",
 					alignItems: "center",
 					flexDirection: "column",
+					width: "100vw",
 				}}
 			>
-				<div
-					style={{
-						display: "flex",
-						justifyContent: "space-evenly",
-						alignItems: "center",
-						flexDirection: "row",
-						width: "50vw",
-						height: "5vh",
-					}}
-				>
-					{cardSpreadVals.map((spreadVal) => {
-						return (
-							<button
-								onClick={handleButtonClick}
-								name={`${spreadVal} Cards`}
-								value={spreadVal}
-								key={spreadVal}
-							>
-								{`${spreadVal}`} Cards
-							</button>
-						);
-					})}
-				</div>
-				<div
-					style={{
-						display: "flex",
-						justifyContent: "space-evenly",
-						alignItems: "center",
-						flexWrap: "wrap",
-					}}
-				>
-					{loading ? (
-						<Loading />
-					) : (
-						dealtCards.map((card, idx) => {
-							return (
-								<div
-									key={idx}
-									style={{
-										display: "flex",
-										alignItems: "center",
-										flexDirection: "column",
-										textAlign: "center",
-										border: "1px solid white",
-										padding: "10px",
-										width: "25vw",
-										minWidth: "200px",
-										maxWidth: "300px",
-										height: "400px",
-										color: " black",
-										backgroundColor: "white",
-										borderRadius: "25px",
-										margin: "5px",
-									}}
-								>
-									<TarotCard card={card} />
-								</div>
-							);
-						})
-					)}
-				</div>
+				{loading ? (
+					<Loading />
+				) : (
+					<div
+						style={{
+							display: "flex",
+							justifyContent: "space-evenly",
+							alignItems: "center",
+							flexDirection: "column",
+						}}
+					>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-evenly",
+								alignItems: "center",
+								flexDirection: "row",
+								width: "50vw",
+								height: "15vh",
+							}}
+						>
+							{cardSpreadVals.map((spreadVal) => {
+								return (
+									<button
+										onClick={handleButtonClick}
+										name={`${spreadVal} Cards`}
+										value={spreadVal}
+										key={spreadVal}
+									>
+										{`${spreadVal}`} Cards
+									</button>
+								);
+							})}
+						</div>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-evenly",
+								alignItems: "center",
+								flexWrap: "wrap",
+							}}
+						>
+							{dealtCards.map((card, idx) => {
+								return (
+									<div
+										key={idx}
+										className="tarotCard"
+										style={{
+											display: "flex",
+											alignItems: "center",
+											justifyContent: "space-around",
+											flexDirection: "column",
+											textAlign: "center",
+											border: "1px solid white",
+											padding: "10px",
+											width: "25vw",
+											minWidth: "200px",
+											maxWidth: "300px",
+											height: "425px",
+											color: " black",
+											backgroundColor: "white",
+											borderRadius: "25px",
+											margin: "15px 30px",
+											boxShadow:
+												"rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
+										}}
+									>
+										<TarotCard card={card} />
+									</div>
+								);
+							})}
+						</div>
+					</div>
+				)}
 			</div>
 		</div>
 	);

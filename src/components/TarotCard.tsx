@@ -8,8 +8,8 @@ const TarotCard = ({card}: TarotCardProps) => {
 	const {name, type, meaning_up, meaning_rev, img} = card;
 
 	return (
-		<>
-			<img src={img} style={{width: "150px"}} title={name}></img>
+		<div>
+			<img src={img} style={{width: "100px"}} title={name}></img>
 			<div
 				style={{
 					display: "flex",
@@ -27,7 +27,7 @@ const TarotCard = ({card}: TarotCardProps) => {
 				//fixes scaling text issue in fontSize
 			}
 			<p style={{fontSize: "min(.8vmax, 10px)"}}>{meaning_up}</p>
-		</>
+		</div>
 	);
 };
 export default TarotCard;

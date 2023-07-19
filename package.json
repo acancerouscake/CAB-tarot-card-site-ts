@@ -3,7 +3,7 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
-	"homepage": "https://acancerouscake.github.io/CAB-tarot-card-site-ts",
+	"homepage": "https://acancerouscake.github.io/CAB-tarot-card-site-ts/",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",

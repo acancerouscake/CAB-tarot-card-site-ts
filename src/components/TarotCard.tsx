@@ -26,7 +26,7 @@ const TarotCard = ({card}: TarotCardProps) => {
 		>
 			<img src={img} style={{width: "150px"}} title={name}></img>
 			<p>{type}</p>
-			<p style={{fontSize: ".8vmax"}}>{meaning_up}</p>
+			<p style={{fontSize: "min(.9vmax, 10px)"}}>{meaning_up}</p>
 		</div>
 	);
 };

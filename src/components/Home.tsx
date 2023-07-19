@@ -4,8 +4,6 @@ import TarotCard from "./TarotCard";
 import Loading from "./Loading";
 import * as TarotImages from "../json/tarot-images.json";
 
-//TODO: Make fetch(78cards) work, retrieve cards based on number from button click
-
 export default function Home() {
 	const cardSpreadVals = ["3", "6", "10", "12"];
 	const [numberOfCards, setNumberOfCards] = useState<number>();

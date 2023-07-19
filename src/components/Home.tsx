@@ -75,9 +75,11 @@ export default function Home() {
 		<div
 			style={{
 				display: "flex",
-				justifyContent: "center",
+				justifyContent: "flex-start",
 				alignItems: "center",
 				flexDirection: "column",
+				minHeight: "100vh",
+				width: "100vw",
 			}}
 		>
 			<h1>Mystic Tarot </h1>
@@ -86,43 +88,70 @@ export default function Home() {
 					display: "flex",
 					justifyContent: "space-evenly",
 					alignItems: "center",
-					flexDirection: "row",
-					width: "50vw",
-					height: "10vh",
+					flexDirection: "column",
 				}}
 			>
-				{cardSpreadVals.map((spreadVal) => {
-					return (
-						<button
-							onClick={handleButtonClick}
-							name={`${spreadVal} Cards`}
-							value={spreadVal}
-							key={spreadVal}
-						>
-							{`${spreadVal}`} Cards
-						</button>
-					);
-				})}
-			</div>
-			<div
-				style={{
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
-					flexWrap: "wrap",
-				}}
-			>
-				{loading ? (
-					<Loading />
-				) : (
-					dealtCards.map((card, idx) => {
+				<div
+					style={{
+						display: "flex",
+						justifyContent: "space-evenly",
+						alignItems: "center",
+						flexDirection: "row",
+						width: "50vw",
+						height: "5vh",
+					}}
+				>
+					{cardSpreadVals.map((spreadVal) => {
 						return (
-							<div key={idx}>
-								<TarotCard card={card} />
-							</div>
+							<button
+								onClick={handleButtonClick}
+								name={`${spreadVal} Cards`}
+								value={spreadVal}
+								key={spreadVal}
+							>
+								{`${spreadVal}`} Cards
+							</button>
 						);
-					})
-				)}
+					})}
+				</div>
+				<div
+					style={{
+						display: "flex",
+						justifyContent: "space-evenly",
+						alignItems: "center",
+						flexWrap: "wrap",
+					}}
+				>
+					{loading ? (
+						<Loading />
+					) : (
+						dealtCards.map((card, idx) => {
+							return (
+								<div
+									key={idx}
+									style={{
+										display: "flex",
+										alignItems: "center",
+										flexDirection: "column",
+										textAlign: "center",
+										border: "1px solid white",
+										padding: "10px",
+										width: "25vw",
+										minWidth: "200px",
+										maxWidth: "300px",
+										height: "400px",
+										color: " black",
+										backgroundColor: "white",
+										borderRadius: "25px",
+										margin: "5px",
+									}}
+								>
+									<TarotCard card={card} />
+								</div>
+							);
+						})
+					)}
+				</div>
 			</div>
 		</div>
 	);

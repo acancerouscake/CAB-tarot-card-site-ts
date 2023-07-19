@@ -8,26 +8,26 @@ const TarotCard = ({card}: TarotCardProps) => {
 	const {name, type, meaning_up, meaning_rev, img} = card;
 
 	return (
-		<div
-			style={{
-				display: "flex",
-				justifyContent: "center",
-				alignItems: "center",
-				flexDirection: "column",
-				textAlign: "center",
-				border: "1px solid white",
-				padding: "10px",
-				width: "25vw",
-				minWidth: "200px",
-				height: "400px",
-				color: " black",
-				backgroundColor: "white",
-			}}
-		>
+		<>
 			<img src={img} style={{width: "150px"}} title={name}></img>
-			<p>{type}</p>
-			<p style={{fontSize: "min(.9vmax, 10px)"}}>{meaning_up}</p>
-		</div>
+			<div
+				style={{
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "space-around",
+					flexDirection: "row",
+					textAlign: "center",
+					width: "100%",
+				}}
+			>
+				<p style={{fontSize: "14px"}}>{name}</p>
+				<p style={{fontSize: "14px"}}>{type}</p>
+			</div>
+			{
+				//fixes scaling text issue in fontSize
+			}
+			<p style={{fontSize: "min(.8vmax, 10px)"}}>{meaning_up}</p>
+		</>
 	);
 };
 export default TarotCard;

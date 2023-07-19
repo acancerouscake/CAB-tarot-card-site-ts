@@ -51,7 +51,7 @@
 			"img": "/src/assets/cards/m09.jpg"
 		},
 		{
-			"name": "Wheel of Fortune",
+			"name": "Wheel Of Fortune",
 			"number": "10",
 			"img": "/src/assets/cards/m10.jpg"
 		},
@@ -101,7 +101,7 @@
 			"img": "/src/assets/cards/m19.jpg"
 		},
 		{
-			"name": "Judgement",
+			"name": "The Last Judgment",
 			"number": "20",
 			"img": "/src/assets/cards/m20.jpg"
 		},
@@ -184,72 +184,72 @@
 		{
 			"name": "Ace of Swords",
 			"number": "1",
-			"img": "/src/assets/cards/s1.jpg"
+			"img": "/src/assets/cards/s01.jpg"
 		},
 		{
 			"name": "Two of Swords",
 			"number": "2",
-			"img": "/src/assets/cards/s2.jpg"
+			"img": "/src/assets/cards/s02.jpg"
 		},
 		{
 			"name": "Three of Swords",
 			"number": "3",
-			"img": "/src/assets/cards/s3.jpg"
+			"img": "/src/assets/cards/s03.jpg"
 		},
 		{
 			"name": "Four of Swords",
 			"number": "4",
-			"img": "/src/assets/cards/s4.jpg"
+			"img": "/src/assets/cards/s04.jpg"
 		},
 		{
 			"name": "Five of Swords",
 			"number": "5",
-			"img": "/src/assets/cards/s5.jpg"
+			"img": "/src/assets/cards/s05.jpg"
 		},
 		{
 			"name": "Six of Swords",
 			"number": "6",
-			"img": "/src/assets/cards/s6.jpg"
+			"img": "/src/assets/cards/s06.jpg"
 		},
 		{
 			"name": "Seven of Swords",
 			"number": "7",
-			"img": "/src/assets/cards/s7.jpg"
+			"img": "/src/assets/cards/s07.jpg"
 		},
 		{
 			"name": "Eight of Swords",
 			"number": "8",
-			"img": "/src/assets/cards/s8.jpg"
+			"img": "/src/assets/cards/s08.jpg"
 		},
 		{
 			"name": "Nine of Swords",
 			"number": "9",
-			"img": "/src/assets/cards/s9.jpg"
+			"img": "/src/assets/cards/s09.jpg"
 		},
 		{
 			"name": "Ten of Swords",
 			"number": "10",
-			"img": "/src/assets/cards/s0.jpg"
+			"img": "/src/assets/cards/s10.jpg"
 		},
 		{
 			"name": "Page of Swords",
 			"number": "11",
-			"img": "/src/assets/cards/s1.jpg"
+			"img": "/src/assets/cards/s11.jpg"
 		},
 		{
 			"name": "Knight of Swords",
 			"number": "12",
-			"img": "/src/assets/cards/s2.jpg"
+			"img": "/src/assets/cards/s12.jpg"
 		},
 		{
 			"name": "Queen of Swords",
 			"number": "13",
-			"img": "/src/assets/cards/s3.jpg"
+			"img": "/src/assets/cards/s13.jpg"
 		},
 		{
 			"name": "King of Swords",
 			"number": "14",
-			"img": "/src/assets/cards/s4.jpg"
+			"img": "/src/assets/cards/s14.jpg"
 		},
 		{
 			"name": "Ace of Wands",

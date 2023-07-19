@@ -47,6 +47,8 @@ export default function Home() {
 	};
 
 	const dealCards = (noOfCards: number) => {
+		setDealtCards([]);
+		setNumberOfCards(0);
 		const tmpArr: CardType[] = [];
 		for (let i = 0; i < noOfCards; i++) {
 			tmpArr.push(tarotCards[i]);
@@ -57,17 +59,19 @@ export default function Home() {
 	const handleButtonClick = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
-		setNumberOfCards(0);
 		const buttonVal = (e.target as HTMLButtonElement).value;
 		setNumberOfCards(parseInt(buttonVal));
-		numberOfCards && dealCards(numberOfCards);
 	};
 
 	useEffect(() => {
 		fetchCards().catch((e) => {
-			console.log(e);
+			console.log("e :>> ", e);
 		});
-	}, []);
+
+		if (numberOfCards && numberOfCards > 0) {
+			dealCards(numberOfCards);
+		}
+	}, [numberOfCards]);
 
 	return (
 		<div
@@ -113,9 +117,9 @@ export default function Home() {
 				{loading ? (
 					<Loading />
 				) : (
-					dealtCards.map((card) => {
+					dealtCards.map((card, idx) => {
 						return (
-							<div key={card.value_int}>
+							<div key={idx}>
 								<TarotCard card={card} />
 							</div>
 						);

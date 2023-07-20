@@ -142,7 +142,7 @@ export default function Home() {
 										style={{
 											display: "flex",
 											alignItems: "center",
-											justifyContent: "space-around",
+											justifyContent: "center",
 											flexDirection: "column",
 											textAlign: "center",
 											border: "1px solid white",

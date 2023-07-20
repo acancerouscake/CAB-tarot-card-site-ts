@@ -15,7 +15,7 @@ interface RouteErrorType {
 
 function NoMatch() {
 	const error = useRouteError() as RouteErrorType;
-	//   console.log("error :>> ", error);
+	console.log("error :>> ", error);
 	const goHome = useNavigate();
 
 	const clickHome = () => {
@@ -29,7 +29,7 @@ function NoMatch() {
 			<h3>{error.statusText}</h3>
 			<h3>{error.error.message}</h3>
 			{/* //? UX using link */}
-			{/* <Link to="/">...go back to Home...</Link> */}
+			<Link to="/">...go back to Home...</Link>
 
 			<button onClick={clickHome}>Click to go Home</button>
 

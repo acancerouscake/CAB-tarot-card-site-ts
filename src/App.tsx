@@ -12,6 +12,8 @@ import {
 	Router,
 	RouterProvider,
 } from "react-router-dom";
+import {AuthContext, AuthContextProvider} from "./contexts/AuthContext";
+import {useContext} from "react";
 
 function App() {
 	const router = createBrowserRouter(
@@ -25,13 +27,15 @@ function App() {
 	);
 
 	return (
-		<>
+		<AuthContextProvider>
 			<RouterProvider router={router} />
-		</>
+		</AuthContextProvider>
 	);
 }
 
 const Root = () => {
+	const {user, login, logout} = useContext(AuthContext);
+
 	return (
 		<div>
 			<nav
@@ -63,6 +67,12 @@ const Root = () => {
 						return isActive ? "history" : "not-in-history";
 					}}
 				</NavLink> */}
+
+				{user ? (
+					<button onClick={logout}>Logout</button>
+				) : (
+					<button onClick={login}>Login</button>
+				)}
 			</nav>
 
 			<div>

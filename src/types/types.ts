@@ -25,3 +25,7 @@ export interface CardJSONImageType {
 	number: string;
 	img: string;
 }
+
+export type User = boolean;
+
+

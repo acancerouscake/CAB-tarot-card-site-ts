@@ -1,6 +1,9 @@
 import Home from "./components/Home";
 import NoMatch from "./components/NoMatch";
 import About from "./components/About";
+import Cards from "./components/Cards";
+import History from "./components/History";
+
 import "./App.css";
 import {
 	createBrowserRouter,
@@ -20,8 +23,9 @@ function App() {
 		createRoutesFromElements(
 			<Route path="/" element={<Root />} errorElement={<NoMatch />}>
 				<Route index element={<Home />} />
-				{/* <Route path="history" element={<SeasonsLayout />} /> */}
+				<Route path="cards" element={<Cards />} />
 				<Route path="about" element={<About />} />
+				<Route path="history" element={<History />} />
 			</Route>
 		)
 	);
@@ -50,23 +54,23 @@ const Root = () => {
 				}}
 			>
 				<NavLink to="/">Home</NavLink>
-				{/* | <Link to="/tarot">Tarot</Link>| */}
+				<NavLink to="/cards">Tarot Reading</NavLink>
 				<NavLink
 					to="/about"
 					style={({isActive}) => {
 						return isActive
-							? {textDecoration: "underline"}
-							: {textDecoration: "none"};
+							? {borderBottom: "1px solid black"}
+							: {borderBottom: ""};
 					}}
 				>
 					About
 				</NavLink>
 
-				{/* <NavLink to="/history">
+				<NavLink to="/history">
 					{({isActive}) => {
 						return isActive ? "history" : "not-in-history";
 					}}
-				</NavLink> */}
+				</NavLink>
 
 				{user ? (
 					<button onClick={logout}>Logout</button>

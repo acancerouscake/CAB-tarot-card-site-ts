@@ -29,7 +29,6 @@ export default function Home() {
 			[cards[i], cards[j]] = [cards[j], cards[i]];
 		}
 		setTarotCards(cards);
-		console.log("cards >::", cards);
 		setIsLoading(false);
 	};
 

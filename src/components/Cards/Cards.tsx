@@ -5,6 +5,8 @@ import Loading from "../Loading";
 import {AuthContext} from "../../contexts/AuthContext";
 import "./cardStyles.css";
 
+//TODO: Fix styling issue with  cards  and navbar, fix issue with cards not getting reshuffled on click of button
+
 export default function Cards() {
 	const {tarotCards, loading} = useContext(AuthContext);
 
@@ -41,72 +43,38 @@ export default function Cards() {
 	}, [numberOfCards, tarotCards]);
 
 	return (
-		<div className="cardsContainer">
+		<div className="componentContainer">
 			<h1>Cards </h1>
-			<div className="">
+			<div className="cardsButtonsLoadingContainer">
 				{loading ? (
 					<Loading />
 				) : (
-					<div
-						className="buttonsContainer"
-						style={{
-							display: "flex",
-							justifyContent: "space-evenly",
-							alignItems: "center",
-							flexDirection: "column",
-						}}
-					>
-						{cardSpreadVals.map((spreadVal) => {
-							return (
-								<button
-									onClick={handleButtonClick}
-									name={`${spreadVal} Cards`}
-									value={spreadVal}
-									key={spreadVal}
-								>
-									{`${spreadVal}`} Cards
-								</button>
-							);
-						})}
-						<div
-							style={{
-								display: "flex",
-								justifyContent: "space-evenly",
-								alignItems: "center",
-								flexWrap: "wrap",
-							}}
-						>
+					<>
+						<div className="cardsButtonsContainer">
+							{cardSpreadVals.map((spreadVal) => {
+								return (
+									<button
+										onClick={handleButtonClick}
+										name={`${spreadVal} Cards`}
+										value={spreadVal}
+										key={spreadVal}
+									>
+										{`${spreadVal}`} Cards
+									</button>
+								);
+							})}
+						</div>
+
+						<div className="cardResultContainer">
 							{dealtCards.map((card, idx) => {
 								return (
-									<div
-										key={idx}
-										className="tarotCard"
-										style={{
-											display: "flex",
-											alignItems: "center",
-											justifyContent: "center",
-											flexDirection: "column",
-											textAlign: "center",
-											border: "1px solid white",
-											padding: "10px",
-											width: "25vw",
-											minWidth: "200px",
-											maxWidth: "300px",
-											height: "425px",
-											color: " black",
-											backgroundColor: "white",
-											borderRadius: "25px",
-											margin: "15px 30px",
-											boxShadow:
-												"rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
-										}}
-									>
+									<div key={idx} className="tarotCard">
 										<TarotCard card={card} />
 									</div>
 								);
 							})}
 						</div>
-					</div>
+					</>
 				)}
 			</div>
 		</div>

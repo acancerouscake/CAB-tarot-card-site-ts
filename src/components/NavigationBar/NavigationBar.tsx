@@ -1,31 +1,18 @@
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {NavLink, Outlet} from "react-router-dom";
 import {AuthContext} from "../../contexts/AuthContext";
 import "./navStyles.css";
 
 function NavigationBar() {
 	const {user, login, logout} = useContext(AuthContext);
-
 	return (
 		<>
 			<input type="checkbox" className="toggler"></input>
-			<div className="hamburger">
-				<div></div>
+			<div className={"hamburger"}>
+				<div className="dataContainer"></div>
 			</div>
 			<div className="menu">
-				<nav
-					style={
-						{
-							// display: "flex",
-							// justifyContent: "space-evenly",
-							// alignItems: "center",
-							// flexDirection: "row",
-							// width: "100vw",
-							// backgroundColor: " #f7eedb",
-							// height: "50px",
-						}
-					}
-				>
+				<nav>
 					<NavLink to="/">Home</NavLink>
 					<NavLink to="/cards">Tarot Reading</NavLink>
 					<NavLink

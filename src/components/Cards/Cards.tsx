@@ -1,8 +1,9 @@
 import React, {useContext, useEffect, useState} from "react";
-import {CardType, CardResponse, CardsJSON} from "../types/types";
-import TarotCard from "./TarotCard";
-import Loading from "./Loading";
-import {AuthContext} from "../contexts/AuthContext";
+import {CardType, CardResponse, CardsJSON} from "../../types/types";
+import TarotCard from "../TarotCard";
+import Loading from "../Loading";
+import {AuthContext} from "../../contexts/AuthContext";
+import "./cardStyles.css";
 
 export default function Cards() {
 	const {tarotCards, loading} = useContext(AuthContext);
@@ -40,30 +41,14 @@ export default function Cards() {
 	}, [numberOfCards, tarotCards]);
 
 	return (
-		<div
-			style={{
-				display: "flex",
-				justifyContent: "flex-start",
-				alignItems: "center",
-				flexDirection: "column",
-				width: "100vw",
-			}}
-		>
-			<h1>Mystic Tarot </h1>
-
-			<div
-				style={{
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
-					flexDirection: "column",
-					width: "100vw",
-				}}
-			>
+		<div className="cardsContainer">
+			<h1>Cards </h1>
+			<div className="">
 				{loading ? (
 					<Loading />
 				) : (
 					<div
+						className="buttonsContainer"
 						style={{
 							display: "flex",
 							justifyContent: "space-evenly",
@@ -71,29 +56,18 @@ export default function Cards() {
 							flexDirection: "column",
 						}}
 					>
-						<div
-							style={{
-								display: "flex",
-								justifyContent: "space-evenly",
-								alignItems: "center",
-								flexDirection: "row",
-								width: "50vw",
-								height: "15vh",
-							}}
-						>
-							{cardSpreadVals.map((spreadVal) => {
-								return (
-									<button
-										onClick={handleButtonClick}
-										name={`${spreadVal} Cards`}
-										value={spreadVal}
-										key={spreadVal}
-									>
-										{`${spreadVal}`} Cards
-									</button>
-								);
-							})}
-						</div>
+						{cardSpreadVals.map((spreadVal) => {
+							return (
+								<button
+									onClick={handleButtonClick}
+									name={`${spreadVal} Cards`}
+									value={spreadVal}
+									key={spreadVal}
+								>
+									{`${spreadVal}`} Cards
+								</button>
+							);
+						})}
 						<div
 							style={{
 								display: "flex",

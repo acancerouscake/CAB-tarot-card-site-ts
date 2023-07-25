@@ -18,6 +18,7 @@ const TarotCard = ({card}: TarotCardProps) => {
 					flexDirection: "row",
 					textAlign: "center",
 					width: "100%",
+					zIndex: "1",
 				}}
 			>
 				<p style={{fontSize: "14px"}}>{name}</p>

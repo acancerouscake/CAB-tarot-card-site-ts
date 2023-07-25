@@ -1,7 +1,7 @@
 import Home from "./components/Home";
 import NoMatch from "./components/NoMatch";
 import About from "./components/About";
-import Cards from "./components/Cards";
+import Cards from "./components/Cards/Cards";
 import History from "./components/History";
 
 import "./App.css";

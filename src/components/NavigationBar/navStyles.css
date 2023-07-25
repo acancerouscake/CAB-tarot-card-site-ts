@@ -2,54 +2,45 @@
 
 .toggler {
 	/* ALWAYS KEEPING THE TOGGLER OR THE CHECKBOX ON TOP OF EVERYTHING :  */
-	z-index: 10;
+	z-index: 80;
 	height: 50px;
 	width: 50px;
 	position: absolute;
 	top: 0;
 	left: 0;
 	cursor: pointer;
+	/*This hides the tickcheckbox behind the cross */
 	opacity: 0;
+	overflow: hidden;
 }
 
 .hamburger {
 	position: absolute;
-	z-index: 5;
-	top: 0;
-	left: 0;
-	height: 40px;
-	width: 40px;
-	padding: 0.6rem;
-
+	z-index: 50;
+	top: 20px;
+	left: 5px;
+	height: 50px;
+	width: 50px;
 	/* FOR DISPLAYING EVERY ELEMENT IN THE CENTER : */
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
 }
 
 /* CREATING THE MIDDLE LINE OF THE HAMBURGER : */
-
 .hamburger > div {
-	position: relative;
-	top: 0;
-	left: 0;
 	background-color: white;
 	height: 2px;
-	width: 60%;
+	width: 30px;
 	transition: all 0.4s ease;
 }
 
 /* CREATING THE TOP AND BOTTOM LINES : 
 TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
-
 .hamburger > div::before,
 .hamburger > div::after {
 	content: "";
 	position: absolute;
 	top: -10px;
 	background: white;
-	width: 100%;
+	width: 30px;
 	height: 2px;
 	transition: all 0.4s ease;
 }
@@ -58,8 +49,7 @@ TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
 	top: 10px;
 }
 
-/* IF THE TOGGLER IS IN ITS CHECKED STATE, THEN SETTING THE BACKGROUND OF THE MIDDLE LAYER TO COMPLETE BLACK AND OPAQUE :  */
-
+/* IF THE TOGGLER IS IN ITS CHECKED STATE, THEN SETTING THE BACKGROUND OF THE MIDDLE LAYER TO TRANSPARENT */
 .toggler:checked + .hamburger > div {
 	background: transparent;
 }
@@ -71,48 +61,64 @@ TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
 }
 
 /* AND ROTATING THE TOP AND BOTTOM LINES :  */
-
 .toggler:checked + .hamburger > div::after {
 	top: 0;
 	transform: rotate(135deg);
 	background: black;
 }
 
-/* MAIN MENU WITH THE WHITE BACKGROUND AND THE TEXT :  */
-
+/* MAIN MENU WITH THE BACKGROUND AND THE TEXT :  */
 .menu {
 	background: rgb(255, 238, 237);
 	position: absolute;
-	padding-top: 50px;
+	padding-top: 40px;
 	width: 0%;
 	left: 0;
+	top: 0;
 	height: 100vh;
-	z-index: 4;
-
+	z-index: 40 !important;
 	/* APPLYING TRANSITION TO THE MENU :  */
-
-	transition: all 0.4s ease;
+	transition: all 0.3s ease;
 }
 
 /* IF THE TOGGLER IS CHECKED, THEN INCREASE THE WIDTH OF THE MENU TO 30% , CREATING A SMOOTH EFFECT :  */
 
 .toggler:checked ~ .menu {
-	width: 30vw;
+	width: 20vw;
+	height: 100%;
 }
 
-/* STYLING THE LIST :  */
-
 .menu > nav {
+	position: absolute;
+	display: none;
+	visibility: none;
+	width: 100%;
+}
+
+.toggler:checked ~ .menu > nav {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	padding-top: 20px;
+	justify-content: flex-start;
 	padding-left: 20px;
+	visibility: visible;
+	transition: visibility 0.4s ease;
+	transition-delay: 0.1s;
+	visibility: visible;
 }
+
+/* STYLING THE menu  */
 
 .menu > nav > a::before {
 	color: black;
 	visibility: hidden;
+	cursor: none;
+}
+
+.menu > nav > a:hover::before {
+	color: black;
+	visibility: hidden;
+	cursor: none;
 }
 
 .menu > nav > a::after {
@@ -126,6 +132,7 @@ TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
 	transition: visibility 0.4s ease;
 	transition-delay: 0.1s;
 	visibility: visible;
+	margin-top: 15px;
 }
 
 .toggler:checked ~ .menu > nav > a:hover {

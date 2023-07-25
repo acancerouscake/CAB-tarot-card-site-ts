@@ -6,7 +6,8 @@ export default function Home() {
 				justifyContent: "center",
 				alignItems: "center",
 				flexDirection: "column",
-				height: "75vh",
+				height: "50vh",
+				width: "100vw",
 			}}
 		>
 			<h1>Mystic Tarot </h1>

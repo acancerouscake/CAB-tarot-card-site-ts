@@ -1,10 +1,51 @@
+@font-face {
+	font-family: "Lumanosimo";
+	src: local("Lumanosimo-Regular"),
+		url("./assets/fonts/Lumanosimo/Lumanosimo-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "MoriaCitadel";
+	src: local("MoriaCitadel"),
+		url("./assets/fonts/moria-citadel/MoriaCitadel.ttf") format("truetype");
+}
+
+:root {
+	--var-main-60: #f7eedb;
+	--var-main-30: #052124;
+	--var-main-10: #52b7b5;
+
+	line-height: 1.5;
+	font-weight: 400;
+
+	color-scheme: dark light;
+	color: var(--var-main-30);
+	background-color: var(--var-main-60);
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+}
+
 #root {
 	width: 100vw;
 	min-height: 100vh;
+	font-family: Lumanosimo;
 	display: flex;
 	justify-content: center;
-	align-items: flex-start;
-	font-family: Lumanosimo;
+	align-items: center;
+	flex-direction: row;
+}
+
+a {
+	font-weight: 500;
+	color: var(--var-main-30);
+	text-decoration: inherit;
+}
+a:hover {
+	color: var(--var-main-10);
 }
 
 .tarotCard {
@@ -41,5 +82,19 @@
 	100% {
 		-webkit-transform: translateY(-14px);
 		transform: translateY(-14px);
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		color: var(--var-main-60);
+		background-color: var(--var-main-30);
+	}
+	a:hover {
+		color: var(--var-main-10);
+	}
+	button {
+		background-color: var(--var-main-60);
+		color: var(--var-main-30);
 	}
 }

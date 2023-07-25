@@ -8,16 +8,12 @@ import "./App.css";
 import {
 	createBrowserRouter,
 	createRoutesFromElements,
-	Link,
-	NavLink,
-	Outlet,
 	Route,
-	Router,
 	RouterProvider,
-	Routes,
 } from "react-router-dom";
 import {AuthContextProvider} from "./contexts/AuthContext";
-import NavigationBar from "./components/NavigationBar";
+import NavigationBar from "./components/NavigationBar/NavigationBar";
+import ProtectedLayout from "./components/ProtectedLayout";
 
 function App() {
 	const router = createBrowserRouter(
@@ -26,7 +22,14 @@ function App() {
 				<Route index element={<Home />} />
 				<Route path="cards" element={<Cards />} />
 				<Route path="about" element={<About />} />
-				<Route path="history" element={<History />} />
+				<Route
+					path="history"
+					element={
+						<ProtectedLayout>
+							<History />
+						</ProtectedLayout>
+					}
+				/>
 			</Route>
 		)
 	);

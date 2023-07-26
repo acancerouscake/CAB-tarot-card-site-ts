@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import {CardType, CardResponse, CardsJSON} from "../../types/types";
-import TarotCard from "../TarotCard";
+import TarotCard from "./TarotCard";
 import Loading from "../Loading";
 import {AuthContext} from "../../contexts/AuthContext";
 import "./cardStyles.css";
@@ -12,7 +12,7 @@ export default function Cards() {
 
 	const cardSpreadVals = ["3", "6", "10", "12"];
 	const [numberOfCards, setNumberOfCards] = useState<number>();
-	const [tCards, setTarotCards] = useState<CardType[]>([]);
+	const [tCards, setTCards] = useState<CardType[]>([]);
 	const [dealtCards, setDealtCards] = useState<CardType[]>([]);
 
 	const dealCards = (noOfCards: number) => {
@@ -34,7 +34,7 @@ export default function Cards() {
 
 	useEffect(() => {
 		if (tarotCards.length > 1) {
-			setTarotCards(tarotCards as CardType[]);
+			setTCards(tarotCards as CardType[]);
 		}
 		if (numberOfCards && numberOfCards > 0) {
 			dealCards(numberOfCards);

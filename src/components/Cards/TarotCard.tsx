@@ -1,4 +1,4 @@
-import {CardType} from "../types/types";
+import {CardType} from "../../types/types";
 
 interface TarotCardProps {
 	card: CardType;

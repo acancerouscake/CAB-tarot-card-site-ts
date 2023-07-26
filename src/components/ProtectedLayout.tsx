@@ -6,7 +6,6 @@ type Props = {
 };
 
 function ProtectedLayout({children}: Props) {
-	console.log(children);
 	const {user} = useContext(AuthContext);
 	return (
 		<>

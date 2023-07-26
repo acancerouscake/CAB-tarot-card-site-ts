@@ -13,23 +13,38 @@ function NavigationBar() {
 			</div>
 			<div className="menu">
 				<nav>
-					<NavLink to="/">Home</NavLink>
-					<NavLink to="/cards">Tarot Reading</NavLink>
+					<NavLink
+						to="/"
+						style={({isActive}) => {
+							return isActive ? {color: "orange "} : {color: ""};
+						}}
+					>
+						Home
+					</NavLink>
+					<NavLink
+						to="/cards"
+						style={({isActive}) => {
+							return isActive ? {color: "orange "} : {color: ""};
+						}}
+					>
+						Tarot Reading
+					</NavLink>
 					<NavLink
 						to="/about"
 						style={({isActive}) => {
-							return isActive
-								? {borderBottom: "1px solid black"}
-								: {borderBottom: ""};
+							return isActive ? {color: "orange "} : {color: ""};
 						}}
 					>
 						About
 					</NavLink>
 
-					<NavLink to="/history">
-						{({isActive}) => {
-							return isActive ? "History" : "not-in-history";
+					<NavLink
+						to="/history"
+						style={({isActive}) => {
+							return isActive ? {color: "orange "} : {color: ""};
 						}}
+					>
+						History
 					</NavLink>
 					{
 						//TODO: Turn this into a component for login and logout

@@ -78,14 +78,16 @@ TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
 	height: 100vh;
 	z-index: 40;
 	/* APPLYING TRANSITION TO THE MENU :  */
-	transition: all 0.3s ease;
+	transition: all 0.5s ease;
 }
 
 /* IF THE TOGGLER IS CHECKED, THEN INCREASE THE WIDTH OF THE MENU TO 30% , CREATING A SMOOTH EFFECT :  */
 
 .toggler:checked ~ .menu {
-	width: 20vw;
+	width: 15vw;
+	flex-shrink: 0;
 	height: 100%;
+	transition: all 0.5s ease;
 }
 
 .menu > nav {
@@ -132,10 +134,11 @@ TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
 
 .toggler:checked ~ .menu > nav > a {
 	transition: visibility 0.4s ease;
-	transition-delay: 0.1s;
 	visibility: visible;
+	transition-delay: 0.2s;
 	margin-top: 15px;
-	padding-left: 20px;
+	padding-left: 10px;
+	font-size: min(1vmax, 20px);
 }
 
 .toggler:checked ~ .menu > nav > a:hover {

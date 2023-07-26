@@ -32,6 +32,8 @@ function NoMatch() {
 			<Link to="/">...go back to Home...</Link>
 
 			<button onClick={clickHome}>Click to go Home</button>
+
+			<Navigate to="/" />
 		</div>
 	);
 }

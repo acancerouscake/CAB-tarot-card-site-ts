@@ -5,30 +5,29 @@
 	flex-direction: column;
 	width: 100vw;
 	height: 100vh;
-	overflow: auto;
 }
 
 .cardsButtonsLoadingContainer {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	flex-direction: column;
+	height: 60vh;
 }
 
-.cardButtonsContainer {
+.cardsButtonsContainer {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	align-items: center;
 	flex-direction: row;
+	width: 50vw;
 }
 
 .cardResultContainer {
 	display: flex;
-	justify-content: space-evenly;
 	align-items: center;
-	flex-direction: row;
-	flex-wrap: wrap;
-	width: 70vw;
+	justify-content: center;
+	width: 100vw;
 }
 
 .tarotCard {
@@ -37,7 +36,7 @@
 	justify-content: center;
 	flex-direction: column;
 	text-align: center;
-	border: 1px solid white;
+	border: 1px solid black;
 	padding: 7px;
 	width: 25vw;
 	min-width: 200px;
@@ -46,11 +45,6 @@
 	color: black;
 	background-color: white;
 	border-radius: 25px;
-	margin: 15px 30px;
-	transition: all 1s;
-	transform: translateZ(0);
-	animation: show 0.5s 0s forwards, fluctuate 2s 0.5s infinite;
-	box-shadow: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset";
 }
 
 /* animations */

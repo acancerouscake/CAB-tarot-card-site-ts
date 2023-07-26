@@ -14,7 +14,7 @@ function NavigationBar() {
 			<div className="menu">
 				<nav>
 					<NavLink
-						to="/"
+						to="/home"
 						style={({isActive}) => {
 							return isActive ? {color: "orange "} : {color: ""};
 						}}

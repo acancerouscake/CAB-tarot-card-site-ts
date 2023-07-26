@@ -51,10 +51,20 @@ export default function Cards() {
 		const centerIndex = Math.floor(dealtCards.length / 2);
 		const cardOffset = 10; // Adjust this value to control the fanning distance between cards
 		const scale = 1 - 0.09 * Math.abs(index - centerIndex); // Adjust this value to control the scaling of cards
-		const underlap = 50; // Adjust this value to control the underlap distance between alternate cards
-
+		const underlap = 100; // Adjust this value to control the underlap distance between alternate cards
+		const yOffset = 2;
 		const distanceFromCenter = Math.abs(index - centerIndex);
-		const translateY = distanceFromCenter * 50; // Adjust this value to control the Y-axis shift for non-center cards
+		let translateY = 0;
+
+		//TODO: Tweak this function to get one layer deeper from the center index from dealtCards to adjust the Y axis further
+		if (index < centerIndex) {
+			// Cards under center index
+			translateY = distanceFromCenter * yOffset;
+		} else {
+			// Cards above center index
+			translateY = distanceFromCenter * yOffset;
+		}
+
 		const rotateX = (index - centerIndex) * cardOffset;
 		const zIndex =
 			index === centerIndex ? 50 : dealtCards.length - distanceFromCenter;
@@ -68,7 +78,7 @@ export default function Cards() {
 			transform: `rotate(${rotateX}deg) translateX(${translateX}px) translateY(${translateY}px) scale(${scale})`,
 			zIndex: zIndex,
 			boxShadow:
-				"rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
+				"rgba(50, 50, 93, 0.25) 0px 25px 500px -10px, rgba(0, 0, 0, 0.3) 0px 15px 30px -15px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
 		};
 	};
 

@@ -2,7 +2,7 @@
 
 .toggler {
 	/* ALWAYS KEEPING THE TOGGLER OR THE CHECKBOX ON TOP OF EVERYTHING :  */
-	z-index: 80;
+	z-index: 100;
 	height: 50px;
 	width: 50px;
 	position: absolute;
@@ -17,8 +17,8 @@
 .hamburger {
 	position: absolute;
 	z-index: 50;
-	top: 20px;
-	left: 5px;
+	top: 25px;
+	left: 15px;
 	height: 50px;
 	width: 50px;
 	/* FOR DISPLAYING EVERY ELEMENT IN THE CENTER : */
@@ -69,14 +69,14 @@ TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
 
 /* MAIN MENU WITH THE BACKGROUND AND THE TEXT :  */
 .menu {
-	background: rgb(255, 238, 237);
+	background-color: rgb(255, 238, 237);
 	position: absolute;
 	padding-top: 40px;
-	width: 0%;
+	width: 0vw;
 	left: 0;
 	top: 0;
 	height: 100vh;
-	z-index: 40 !important;
+	z-index: 40;
 	/* APPLYING TRANSITION TO THE MENU :  */
 	transition: all 0.3s ease;
 }
@@ -93,6 +93,7 @@ TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
 	display: none;
 	visibility: none;
 	width: 100%;
+	background-color: rgb(255, 238, 237);
 }
 
 .toggler:checked ~ .menu > nav {
@@ -100,11 +101,12 @@ TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: flex-start;
-	padding-left: 20px;
 	visibility: visible;
 	transition: visibility 0.4s ease;
 	transition-delay: 0.1s;
 	visibility: visible;
+	height: 100vh;
+	z-index: 40;
 }
 
 /* STYLING THE menu  */
@@ -133,6 +135,7 @@ TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
 	transition-delay: 0.1s;
 	visibility: visible;
 	margin-top: 15px;
+	padding-left: 20px;
 }
 
 .toggler:checked ~ .menu > nav > a:hover {

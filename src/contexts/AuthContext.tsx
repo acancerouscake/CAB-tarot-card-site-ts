@@ -71,8 +71,6 @@ export const AuthContextProvider = (props: Props) => {
 		});
 	}, []);
 
-	console.log(cards);
-
 	const login = () => {
 		setUser(true);
 	};

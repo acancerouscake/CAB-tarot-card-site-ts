@@ -36,7 +36,6 @@ export default function Cards() {
 		if (tarotCards.length > 1) {
 			setTarotCards(tarotCards as CardType[]);
 		}
-		console.log("cards :>> ", tCards);
 		if (numberOfCards && numberOfCards > 0) {
 			dealCards(numberOfCards);
 		}

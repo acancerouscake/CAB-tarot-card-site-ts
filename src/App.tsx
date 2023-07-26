@@ -18,7 +18,15 @@ import ProtectedLayout from "./components/ProtectedLayout";
 function App() {
 	const router = createBrowserRouter(
 		createRoutesFromElements(
-			<Route path="/" element={<NavigationBar />} errorElement={<NoMatch />}>
+			<Route
+				path="/"
+				element={
+					<div style={{zIndex: 30}}>
+						<NavigationBar />
+					</div>
+				}
+				errorElement={<NoMatch />}
+			>
 				<Route index element={<Home />} />
 				<Route path="cards" element={<Cards />} />
 				<Route path="about" element={<About />} />

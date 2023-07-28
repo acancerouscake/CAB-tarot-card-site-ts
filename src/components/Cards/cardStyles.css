@@ -12,7 +12,7 @@
 	justify-content: space-between;
 	align-items: center;
 	flex-direction: column;
-	height: 60vh;
+	height: 70vh;
 }
 
 .cardsButtonsContainer {
@@ -30,22 +30,9 @@
 	width: 100vw;
 }
 
-.tarotCard {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	text-align: center;
-	border: 1px solid black;
-	padding: 7px;
-	width: 25vw;
-	min-width: 200px;
-	max-width: 300px;
-	height: 425px;
-	color: black;
-	background-color: white;
-	border-radius: 25px;
-}
+/* .tarotCard:hover {
+	transform: translateY(-50px);
+} */
 
 /* animations */
 

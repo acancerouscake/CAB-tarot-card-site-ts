@@ -8,7 +8,7 @@ import "./cardStyles.css";
 export default function Cards() {
 	const {tarotCards, loading} = useContext(AuthContext);
 
-	const cardSpreadVals = [1, 3, 5];
+	const cardSpreadVals = [1, 3, 5, 6, 7];
 	const [numberOfCards, setNumberOfCards] = useState<number>(0);
 	const [dealtCards, setDealtCards] = useState<CardType[]>([]);
 
@@ -46,42 +46,6 @@ export default function Cards() {
 		[]
 	);
 
-	const getTransformStyle = (index: number) => {
-		let translateX = 1;
-		const centerIndex = Math.floor(dealtCards.length / 2);
-		const cardOffset = 10; // Adjust this value to control the fanning distance between cards
-		const scale = 1 - 0.09 * Math.abs(index - centerIndex); // Adjust this value to control the scaling of cards
-		const underlap = 100; // Adjust this value to control the underlap distance between alternate cards
-		const yOffset = 2;
-		const distanceFromCenter = Math.abs(index - centerIndex);
-		let translateY = 0;
-
-		//TODO: Tweak this function to get one layer deeper from the center index from dealtCards to adjust the Y axis further
-		if (index < centerIndex) {
-			// Cards under center index
-			translateY = distanceFromCenter * yOffset;
-		} else {
-			// Cards above center index
-			translateY = distanceFromCenter * yOffset;
-		}
-
-		const rotateX = (index - centerIndex) * cardOffset;
-		const zIndex =
-			index === centerIndex ? 50 : dealtCards.length - distanceFromCenter;
-
-		translateX =
-			index < centerIndex
-				? (index - centerIndex) * cardOffset + underlap * (centerIndex - index)
-				: (index - centerIndex) * cardOffset - underlap * (index - centerIndex);
-
-		return {
-			transform: `rotate(${rotateX}deg) translateX(${translateX}px) translateY(${translateY}px) scale(${scale})`,
-			zIndex: zIndex,
-			boxShadow:
-				"rgba(50, 50, 93, 0.25) 0px 25px 500px -10px, rgba(0, 0, 0, 0.3) 0px 15px 30px -15px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
-		};
-	};
-
 	return (
 		<div className="componentContainer">
 			<h1>Cards </h1>
@@ -104,15 +68,15 @@ export default function Cards() {
 						</div>
 
 						<div className="cardResultContainer">
-							{dealtCards.map((card, idx) => (
-								<div
-									key={idx}
-									className={`tarotCard `}
-									style={getTransformStyle(idx)}
-								>
-									<TarotCard card={card} />
-								</div>
-							))}
+							{dealtCards.map((card, idx) => {
+								return (
+									<TarotCard
+										card={card}
+										num={dealtCards.length}
+										idx={idx}
+									/>
+								);
+							})}
 						</div>
 					</>
 				)}

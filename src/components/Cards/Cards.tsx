@@ -70,11 +70,13 @@ export default function Cards() {
 						<div className="cardResultContainer">
 							{dealtCards.map((card, idx) => {
 								return (
-									<TarotCard
-										card={card}
-										num={dealtCards.length}
-										idx={idx}
-									/>
+									<React.Fragment key={idx}>
+										<TarotCard
+											card={card}
+											num={dealtCards.length}
+											idx={idx}
+										/>
+									</React.Fragment>
 								);
 							})}
 						</div>

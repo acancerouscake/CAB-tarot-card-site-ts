@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {CardType} from "../../types/types";
+import TarotCardModal from "./TarotCardModal";
 
 interface TarotCardProps {
 	card: CardType;
@@ -8,77 +9,85 @@ interface TarotCardProps {
 }
 
 const TarotCard = ({card, num, idx}: TarotCardProps) => {
-	const {name, type, meaning_up, img} = card;
+	const {name, img} = card;
 
+	const [selectedCard, setSelectedCard] = useState<CardType | null>(null);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
 
+	const handleCardClick = () => {
+		setIsModalOpen(true);
+		setSelectedCard(card);
+	};
+
+	const handleCloseModal = () => {
+		setIsModalOpen(false);
+		setSelectedCard(null);
+	};
+
 	const getTransformStyle = (num: number, idx: number): React.CSSProperties => {
-		const overHalf = num > (num - 1) / 2;
-		const curl = Math.pow(num, 1) * 0.1;
-		const deg = num > 1 ? -num * 5 : 0;
-		let degs = deg / 2.1;
-		const initialDown = num * 5;
-		let down = initialDown / 2;
+		idx++;
+		const curl = Math.pow(num, 2) * 10;
+		const deg = idx > 1 ? -idx * 3 : 2;
+		let degs = deg / 9;
+		// let down = initialDown / 2;
 		const initialOver = curl;
-		let over = initialOver / 2;
+		let over = initialOver / 10;
 
 		if (num > 1) {
-			degs -= deg / (num - 1);
-			down -= initialDown / (num - 0.5);
+			degs -= deg / idx;
+			// down -= initialDown / (num - 1);
 			over -= initialOver / (num - 1);
 		}
 
-		const hoverTransform = `translateY(-50px)`;
-		const baseTransform = `translateY(0px)
-		}%)  translateX(${30 + over * -1}%) rotate(${degs}deg)`;
-		//TODO: Figure out why rotation doesn't work, fix this
+		const hoverTransform = `translateY(-100px) translateX(${
+			-50 + over * -1
+		}%) rotate(${degs}deg)`;
+		const baseTransform = `translateX(${-50 + over * -1}%) rotate(${degs}deg)`;
+
 		return {
 			display: "flex",
 			alignItems: "center",
-			justifyContent: "center",
+			justifyContent: "space-evenly",
 			flexDirection: "column",
 			textAlign: "center",
-			border: " 1px solid black",
-			padding: "5px",
-			marginLeft: " -200px",
+			border: "1px solid black",
+			marginLeft: "-175px",
 			width: "300px",
 			height: "425px",
 			color: "black",
 			backgroundColor: "white",
-			transform: isHovered ? hoverTransform : baseTransform,
+			transform: isHovered && !isModalOpen ? hoverTransform : baseTransform,
 			borderRadius: "25px",
 			zIndex: idx,
-			transition: "transform ease 0.2s",
+			transition: "transform ease 0.7s",
+			cursor: "pointer",
 		};
 	};
 
-	console.log(isHovered);
-	return (
+	return selectedCard ? (
+		<TarotCardModal
+			card={card}
+			isModalOpen={isModalOpen}
+			idx={idx}
+			num={num}
+			onClose={handleCloseModal}
+		/>
+	) : (
 		<div
-			onMouseEnter={() => setIsHovered(true)}
+			onMouseEnter={() => setIsHovered(!isModalOpen)}
 			onMouseLeave={() => setIsHovered(false)}
 			style={getTransformStyle(num, idx)}
+			className="tarotCard"
 			key={idx}
+			onClick={handleCardClick}
 		>
-			<img src={img} style={{width: "100px"}} title={name}></img>
-			<div
-				style={{
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "space-around",
-					flexDirection: "row",
-					textAlign: "center",
-					width: "100%",
-				}}
-			>
-				<p style={{fontSize: "14px"}}>{name}</p>
-				<p style={{fontSize: "14px"}}>{type}</p>
-			</div>
-			{
-				//fixes scaling text issue in fontSize
-			}
-			<p style={{fontSize: "min(.8vmax, 10px)"}}>{meaning_up}</p>
+			<h2 style={{fontSize: "30px", letterSpacing: "5px", fontWeight: 400}}>
+				{name}
+			</h2>
+			<img src={img} style={{width: "180px"}} title={name} alt={name} />
 		</div>
 	);
 };
+
 export default TarotCard;

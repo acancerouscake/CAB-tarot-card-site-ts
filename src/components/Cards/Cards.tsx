@@ -58,6 +58,7 @@ export default function Cards() {
 							{cardSpreadVals.map((spreadVal) => (
 								<button
 									onClick={handleButtonClick}
+									className={"button-5"}
 									name={`${spreadVal} Cards`}
 									value={spreadVal}
 									key={spreadVal}

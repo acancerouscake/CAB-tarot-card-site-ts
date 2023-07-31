@@ -10,14 +10,24 @@
 		url("./assets/fonts/moria-citadel/MoriaCitadel.ttf") format("truetype");
 }
 
-:root {
+@font-face {
+	font-family: "AmaticSC";
+	src: local("AmaticSC-Regular"),
+		url("./assets/fonts/Amatic_SC/AmaticSC-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "AmaticSC-Bold";
+	src: local("AmaticSC-Bold"),
+		url("./assets/fonts/Amatic_SC/AmaticSC-Bold.ttf") format("truetype");
+}
+
+AmaticSC-Bold :root {
 	--var-main-60: #f7eedb;
 	--var-main-30: #052124;
 	--var-main-10: #52b7b5;
 
 	line-height: 1.5;
-	font-weight: 400;
-
 	color-scheme: dark light;
 	color: var(--var-main-30);
 	background-color: var(--var-main-60);
@@ -33,23 +43,70 @@ body {
 	width: 100vw;
 	min-height: 100vh;
 	overflow: hidden;
+	margin: 0;
+	padding: 0;
 }
 
 #root {
-	font-family: Lumanosimo;
+	font-family: AmaticSC;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 }
 
+h1,
+h2 {
+	font-size: 96px;
+	font-family: AmaticSC-Bold;
+}
+
 a {
-	font-weight: 500;
 	color: var(--var-main-30);
 	text-decoration: inherit;
 }
 a:hover {
 	color: var(--var-main-10);
+}
+
+.button-5 {
+	align-items: center;
+	background-clip: padding-box;
+	background-color: #f7eedb;
+	border: 1px solid transparent;
+	border-radius: 0.5rem;
+	box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+	box-sizing: border-box;
+	color: #052124;
+	cursor: pointer;
+	display: inline-flex;
+	font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
+		Arial, sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	justify-content: center;
+	line-height: 1.25;
+	margin: 0;
+	min-height: 3rem;
+	padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+	position: relative;
+	text-decoration: none;
+	transition: all 250ms;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	vertical-align: baseline;
+	width: auto;
+}
+
+.button-5:hover,
+.button-5:focus {
+	background-color: #f1d6a1;
+	box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-5:hover {
+	transform: translateY(-5px);
 }
 
 @media (prefers-color-scheme: dark) {

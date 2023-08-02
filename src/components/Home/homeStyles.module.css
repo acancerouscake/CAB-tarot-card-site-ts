@@ -1,0 +1,59 @@
+.wrapper {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.link_wrapper {
+	position: relative;
+}
+
+.link_wrapper a {
+	display: block;
+	width: 10vw;
+	min-width: 100px;
+	height: 50px;
+	line-height: 50px;
+	text-decoration: none;
+	background: #e3caca;
+	text-align: center;
+	color: #052124;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	border: 3px solid #333;
+	transition: all 0.35s;
+	font-size: 24px;
+}
+
+.icon {
+	width: 50px;
+	height: 50px;
+	border: 3px solid transparent;
+	position: absolute;
+	transform: rotate(45deg);
+	right: 0;
+	top: 0;
+	z-index: -1;
+	transition: all 0.35s;
+}
+
+.icon > svg {
+	width: 30px;
+	position: absolute;
+	top: calc(50% - 15px);
+	left: calc(50% - 15px);
+	transform: rotate(-45deg);
+	fill: #f7debd;
+	transition: all 0.35s;
+}
+.link_wrapper a:hover {
+	width: 200px;
+	border: 3px solid #f7debd;
+	background: transparent;
+	color: #52b7b5;
+}
+.link_wrapper a:hover + .icon {
+	border: 3px solid #f7debd;
+	right: -25%;
+}

@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {CardType} from "../../types/types";
 import TarotCardModal from "./TarotCardModal";
+import styles from "./cardStyles.module.css";
 
 interface TarotCardProps {
 	card: CardType;
@@ -78,7 +79,7 @@ const TarotCard = ({card, num, idx}: TarotCardProps) => {
 			onMouseEnter={() => setIsHovered(!isModalOpen)}
 			onMouseLeave={() => setIsHovered(false)}
 			style={getTransformStyle(num, idx)}
-			className="tarotCard"
+			className={styles.tarotCard}
 			key={idx}
 			onClick={handleCardClick}
 		>

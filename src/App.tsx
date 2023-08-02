@@ -1,4 +1,4 @@
-import Home from "./components/Home";
+import Home from "./components/Home/Home";
 import NoMatch from "./components/NoMatch";
 import About from "./components/About";
 import Cards from "./components/Cards/Cards";
@@ -14,6 +14,8 @@ import {
 import {AuthContextProvider} from "./contexts/AuthContext";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import ProtectedLayout from "./components/ProtectedLayout";
+import {TarotCardContextProvider} from "./contexts/tarotCardContext";
+import Login from "./components/Login";
 
 function App() {
 	const router = createBrowserRouter(
@@ -28,8 +30,17 @@ function App() {
 				errorElement={<NoMatch />}
 			>
 				<Route index element={<Home />} />
-				<Route path="cards" element={<Cards />} />
+				<Route
+					path="cards"
+					element={
+						<TarotCardContextProvider>
+							<Cards />
+						</TarotCardContextProvider>
+					}
+				/>
 				<Route path="about" element={<About />} />
+				<Route path="login" element={<Login />} />
+
 				<Route
 					path="history"
 					element={

@@ -2,11 +2,12 @@ import React, {useContext, useEffect, useState, useCallback} from "react";
 import {CardType} from "../../types/types";
 import TarotCard from "./TarotCard";
 import Loading from "../Loading";
-import {AuthContext} from "../../contexts/AuthContext";
-import "./cardStyles.css";
+import {TarotCardContext} from "../../contexts/TarotCardContext";
+import styles from "./cardStyles.module.css";
+import Chat from "../Chat/Chat";
 
 export default function Cards() {
-	const {tarotCards, loading} = useContext(AuthContext);
+	const {tarotCards, loading} = useContext(TarotCardContext);
 
 	const cardSpreadVals = [1, 3, 5, 6, 7];
 	const [numberOfCards, setNumberOfCards] = useState<number>(0);
@@ -47,14 +48,14 @@ export default function Cards() {
 	);
 
 	return (
-		<div className="componentContainer">
+		<div className={styles.componentContainer}>
 			<h1>Cards </h1>
-			<div className="cardsButtonsLoadingContainer">
+			<div className={styles.cardsButtonsLoadingContainer}>
 				{loading ? (
 					<Loading />
 				) : (
 					<>
-						<div className="cardsButtonsContainer">
+						<div className={styles.cardsButtonsContainer}>
 							{cardSpreadVals.map((spreadVal) => (
 								<button
 									onClick={handleButtonClick}
@@ -68,7 +69,7 @@ export default function Cards() {
 							))}
 						</div>
 
-						<div className="cardResultContainer">
+						<div className={styles.cardResultContainer}>
 							{dealtCards.map((card, idx) => {
 								return (
 									<React.Fragment key={idx}>
@@ -80,6 +81,9 @@ export default function Cards() {
 									</React.Fragment>
 								);
 							})}
+						</div>
+						<div className="CHATBOX">
+							<Chat messages={["HII"]} getMessage={() => console.log("hi")} />
 						</div>
 					</>
 				)}

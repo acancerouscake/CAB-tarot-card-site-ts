@@ -72,7 +72,7 @@ a:hover {
 .button-5 {
 	align-items: center;
 	background-clip: padding-box;
-	background-color: #f7eedb;
+	background-color: #f3e1b9;
 	border: 1px solid transparent;
 	border-radius: 0.5rem;
 	box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -82,7 +82,7 @@ a:hover {
 	display: inline-flex;
 	font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
 		Arial, sans-serif;
-	font-size: 16px;
+	font-size: min(1.2vmax, 16px);
 	font-weight: 600;
 	justify-content: center;
 	line-height: 1.25;
@@ -96,7 +96,8 @@ a:hover {
 	-webkit-user-select: none;
 	touch-action: manipulation;
 	vertical-align: baseline;
-	width: auto;
+	width: 15vw;
+	max-width: 110px;
 }
 
 .button-5:hover,

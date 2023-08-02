@@ -1,5 +1,5 @@
-import React from "react";
 import {CardType} from "../../types/types";
+import styles from "./cardStyles.module.css";
 
 interface TarotCardProps {
 	card: CardType | null;
@@ -13,7 +13,7 @@ const TarotCardModal = ({card, onClose}: TarotCardProps) => {
 	const {name, type, meaning_up, desc, img} = card as CardType;
 
 	return (
-		<div className="modal" onClick={(e) => e.stopPropagation()}>
+		<div className={styles.modal} onClick={(e) => e.stopPropagation()}>
 			<div
 				onClick={onClose}
 				style={{

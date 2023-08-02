@@ -8,10 +8,10 @@ const History = () => {
 		<div
 			style={{
 				display: "flex",
-				justifyContent: "center",
+				justifyContent: "flex-start",
 				alignItems: "center",
 				flexDirection: "column",
-				height: "50vh",
+				height: "40vh",
 				width: "100vw",
 			}}
 		>

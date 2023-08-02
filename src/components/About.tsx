@@ -8,10 +8,10 @@ const About = () => {
 		<div
 			style={{
 				display: "flex",
-				justifyContent: "center",
+				justifyContent: "flex-start",
 				alignItems: "center",
 				flexDirection: "column",
-				height: "50vh",
+				height: "100vh",
 				width: "100vw",
 			}}
 		>

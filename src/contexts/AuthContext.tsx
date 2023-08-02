@@ -1,25 +1,43 @@
-import {createContext, useEffect, useState} from "react";
-import {CardResponse, CardType, CardsJSON, User} from "../types/types";
+import {FormEvent, createContext, useEffect, useState} from "react";
+import {CardResponse, CardType, CardsJSON} from "../types/types";
+import {
+	type User,
+	createUserWithEmailAndPassword,
+	onAuthStateChanged,
+	signOut,
+	signInWithEmailAndPassword,
+} from "firebase/auth";
 import * as TarotImages from "../json/tarot-images.json";
+import {auth} from "../firebaseConfig";
 
 export interface ContextType {
-	user: User | "No provider";
-	tarotCards: CardType[] | "No provider";
-	loading: boolean;
-	login: () => void;
+	user: User | null | "No provider";
+	handleLogin: (
+		e: FormEvent<HTMLFormElement>,
+		email: string,
+		password: string
+	) => void;
 	logout: () => void;
+	handleRegister: (
+		e: FormEvent<HTMLFormElement>,
+		email: string,
+		password: string
+	) => void;
+	isChecked: boolean;
 }
 
 const defaultValue: ContextType = {
 	user: "No provider",
-	tarotCards: "No provider",
-	loading: false,
-	login: () => {
+	handleLogin: () => {
 		throw Error("No provider");
 	},
 	logout: () => {
 		throw Error("No provider");
 	},
+	handleRegister: () => {
+		throw Error("No provider");
+	},
+	isChecked: false,
 };
 
 export const AuthContext = createContext(defaultValue);
@@ -29,58 +47,86 @@ interface Props {
 }
 
 export const AuthContextProvider = (props: Props) => {
-	const {cards} = TarotImages as CardsJSON;
-	const [user, setUser] = useState(false);
-	const [tarotCards, setTarotCards] = useState<CardType[]>([]);
-	const [loading, setIsLoading] = useState(false);
+	// const {cards} = TarotImages as CardsJSON;
+	const [user, setUser] = useState<User | null>(null);
+	const [isChecked, setIsChecked] = useState(false);
 
-	const fetchCards = async () => {
-		setIsLoading(true);
-		try {
-			const response = await fetch(`https://tarot-api-3hv5.onrender.com/api/v1/`);
-			const data = (await response.json()) as CardResponse;
-			getImagesForCards(data.cards);
-		} catch (e) {
-			console.log("error :>> ", e);
-			setIsLoading(false);
-		}
-	};
-	const getImagesForCards = (apiCardData: CardType[]) => {
-		apiCardData.forEach((cardAPI) => {
-			cards.forEach((cardJSON) => {
-				if (cardAPI.name === cardJSON.name) {
-					return (cardAPI.img = cardJSON.img);
-				}
+	const logout = () => {
+		signOut(auth)
+			.then(() => {
+				setUser(null);
+			})
+			.catch((error) => {
+				// An error happened.
+				console.log(error);
 			});
-		});
-		randomizeCards(apiCardData);
 	};
 
-	const randomizeCards = (cardsArg: CardType[]) => {
-		for (let i = cardsArg.length - 1; i > 0; i--) {
-			const j = Math.floor(Math.random() * (i + 1));
-			[cardsArg[i], cardsArg[j]] = [cardsArg[j], cardsArg[i]];
-		}
-		setTarotCards(cardsArg);
-		setIsLoading(false);
+	const handleRegister = (
+		e: FormEvent<HTMLFormElement>,
+		email: string,
+		password: string
+	) => {
+		e.preventDefault();
+		createUserWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+				// Signed in
+				const user = userCredential.user;
+				console.log("new user", user);
+				setUser(user);
+			})
+			.catch((error) => {
+				// const errorCode = error.code;
+				// const errorMessage = error.message;
+				console.log(error);
+			});
+	};
+
+	const handleLogin = (
+		e: FormEvent<HTMLFormElement>,
+		email: string,
+		password: string
+	) => {
+		e.preventDefault();
+		signInWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+				// Signed in
+				const user = userCredential.user;
+				setUser(user);
+				// ...
+			})
+			.catch((error) => {
+				// const errorCode = error.code;
+				// const errorMessage = error.message;
+				console.log(error);
+			});
+	};
+
+	const checkActiveUser = () => {
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				// User is signed in, see docs for a list of available properties
+				// https://firebase.google.com/docs/reference/js/auth.user
+				const uid = user.uid;
+				setUser(user);
+				// ...
+			} else {
+				setUser(null);
+				// User is signed out
+				// ...
+			}
+			setIsChecked(true);
+		});
 	};
 
 	useEffect(() => {
-		fetchCards().catch((e) => {
-			console.log("e :>> ", e);
-		});
+		checkActiveUser();
 	}, []);
 
-	const login = () => {
-		setUser(true);
-	};
-
-	const logout = () => {
-		setUser(false);
-	};
-
 	return (
-		<AuthContext.Provider value={{user, tarotCards, loading, login, logout}}>
+		<AuthContext.Provider
+			value={{user, handleLogin, logout, handleRegister, isChecked}}
+		>
 			{props.children}
 		</AuthContext.Provider>
 	);

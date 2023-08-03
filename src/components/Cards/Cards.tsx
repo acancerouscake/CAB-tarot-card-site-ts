@@ -71,17 +71,20 @@ export default function Cards() {
 		<div className={styles.componentContainer}>
 			<h1>Cards </h1>
 			<div className={styles.cardsButtonsLoadingContainer}>
-				<SegmentedControl
-					name="group-1"
-					callback={(val) => setNumberOfCards(val)}
-					defaultIndex={0}
-					controlRef={useRef()}
-					segments={cardSpreadVals}
-				/>
+				<div>
+					<SegmentedControl
+						name="group-1"
+						callback={(val) => setNumberOfCards(val)}
+						defaultIndex={0}
+						controlRef={useRef()}
+						segments={cardSpreadVals}
+					/>
+				</div>
+
 				{loading ? (
-					<>
+					<div>
 						<Loading />
-					</>
+					</div>
 				) : (
 					<>
 						<div className={styles.cardsButtonsContainer}>

@@ -1,5 +1,4 @@
 import {FormEvent, createContext, useEffect, useState} from "react";
-import {CardResponse, CardType, CardsJSON} from "../types/types";
 import {
 	type User,
 	createUserWithEmailAndPassword,
@@ -7,11 +6,10 @@ import {
 	signOut,
 	signInWithEmailAndPassword,
 } from "firebase/auth";
-import * as TarotImages from "../json/tarot-images.json";
 import {auth} from "../firebaseConfig";
 
 export interface ContextType {
-	user: User | null | "No provider";
+	user: User | null;
 	handleLogin: (
 		e: FormEvent<HTMLFormElement>,
 		email: string,
@@ -27,7 +25,7 @@ export interface ContextType {
 }
 
 const defaultValue: ContextType = {
-	user: "No provider",
+	user: null,
 	handleLogin: () => {
 		throw Error("No provider");
 	},
@@ -47,7 +45,6 @@ interface Props {
 }
 
 export const AuthContextProvider = (props: Props) => {
-	// const {cards} = TarotImages as CardsJSON;
 	const [user, setUser] = useState<User | null>(null);
 	const [isChecked, setIsChecked] = useState(false);
 
@@ -93,7 +90,6 @@ export const AuthContextProvider = (props: Props) => {
 				// Signed in
 				const user = userCredential.user;
 				setUser(user);
-				// ...
 			})
 			.catch((error) => {
 				// const errorCode = error.code;
@@ -109,11 +105,9 @@ export const AuthContextProvider = (props: Props) => {
 				// https://firebase.google.com/docs/reference/js/auth.user
 				const uid = user.uid;
 				setUser(user);
-				// ...
 			} else {
 				setUser(null);
 				// User is signed out
-				// ...
 			}
 			setIsChecked(true);
 		});

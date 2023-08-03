@@ -10,18 +10,7 @@ function ProtectedLayout({children}: Props) {
 	const {user, isChecked} = useContext(AuthContext);
 	return isChecked ? (
 		user ? (
-			<div
-				style={{
-					display: "flex",
-					justifyContent: "flex-start",
-					alignItems: "center",
-					flexDirection: "column",
-					width: "100vw",
-					height: "30vh",
-				}}
-			>
-				{children}
-			</div>
+			<>{children}</>
 		) : (
 			<>
 				<p
@@ -36,7 +25,6 @@ function ProtectedLayout({children}: Props) {
 				>
 					Restricted content. Please log in to access
 				</p>
-				{children}
 			</>
 		)
 	) : (
@@ -53,7 +41,6 @@ function ProtectedLayout({children}: Props) {
 			>
 				Restricted content. Please log in to access
 			</p>
-			{children}
 		</>
 	);
 }

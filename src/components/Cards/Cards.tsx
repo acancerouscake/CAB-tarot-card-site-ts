@@ -1,16 +1,40 @@
-import React, {useContext, useEffect, useState, useCallback} from "react";
+import React, {useContext, useEffect, useState, useCallback, useRef} from "react";
 import {CardType} from "../../types/types";
 import TarotCard from "./TarotCard";
 import Loading from "../Loading";
 import {TarotCardContext} from "../../contexts/TarotCardContext";
 import styles from "./cardStyles.module.css";
 import Chat from "../Chat/Chat";
+import {AuthContextProvider} from "../../contexts/AuthContext";
+import ProtectedLayout from "../ProtectedLayout";
+import SegmentedControl from "../SegmentedControls/SegmentedControl";
 
 export default function Cards() {
+	const cardSpreadVals = [
+		{
+			label: "3",
+			value: 3,
+			ref: useRef(),
+		},
+		{
+			label: "5",
+			value: 5,
+			ref: useRef(),
+		},
+		{
+			label: "6",
+			value: 6,
+			ref: useRef(),
+		},
+		{
+			label: "7",
+			value: 7,
+			ref: useRef(),
+		},
+	];
 	const {tarotCards, loading} = useContext(TarotCardContext);
-
-	const cardSpreadVals = [1, 3, 5, 6, 7];
-	const [numberOfCards, setNumberOfCards] = useState<number>(0);
+	// const cardSpreadVals = [1, 3, 5, 6, 7];
+	const [numberOfCards, setNumberOfCards] = useState<number>(3);
 	const [dealtCards, setDealtCards] = useState<CardType[]>([]);
 
 	const dealCards = useCallback(
@@ -33,40 +57,41 @@ export default function Cards() {
 		[tarotCards]
 	);
 
-	useEffect(() => {
-		if (numberOfCards && numberOfCards > 0) {
-			dealCards(numberOfCards);
-		}
-	}, [numberOfCards, tarotCards, dealCards]);
+	// useEffect(() => {
+	// 	if (numberOfCards && numberOfCards > 0) {
+	// 		dealCards(numberOfCards);
+	// 	}
+	// }, [numberOfCards, tarotCards, dealCards]);
 
-	const handleButtonClick = useCallback(
-		(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-			const buttonVal = parseInt((e.target as HTMLButtonElement).value);
-			setNumberOfCards(buttonVal);
-		},
-		[]
-	);
+	const handleButtonClick = useCallback(() => {
+		dealCards(numberOfCards);
+	}, [dealCards, numberOfCards]);
 
 	return (
 		<div className={styles.componentContainer}>
 			<h1>Cards </h1>
 			<div className={styles.cardsButtonsLoadingContainer}>
+				<SegmentedControl
+					name="group-1"
+					callback={(val) => setNumberOfCards(val)}
+					defaultIndex={0}
+					controlRef={useRef()}
+					segments={cardSpreadVals}
+				/>
 				{loading ? (
-					<Loading />
+					<>
+						<Loading />
+					</>
 				) : (
 					<>
 						<div className={styles.cardsButtonsContainer}>
-							{cardSpreadVals.map((spreadVal) => (
-								<button
-									onClick={handleButtonClick}
-									className={"button-5"}
-									name={`${spreadVal} Cards`}
-									value={spreadVal}
-									key={spreadVal}
-								>
-									{`${spreadVal}`} Cards
-								</button>
-							))}
+							<button
+								onClick={handleButtonClick}
+								className={"button-5"}
+								name={`Cards`}
+							>
+								Draw
+							</button>
 						</div>
 
 						<div className={styles.cardResultContainer}>
@@ -82,9 +107,13 @@ export default function Cards() {
 								);
 							})}
 						</div>
-						<div className="CHATBOX">
-							<Chat messages={["HII"]} getMessage={() => console.log("hi")} />
-						</div>
+						<>
+							<AuthContextProvider>
+								<ProtectedLayout>
+									<Chat />
+								</ProtectedLayout>
+							</AuthContextProvider>
+						</>
 					</>
 				)}
 			</div>

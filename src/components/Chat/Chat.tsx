@@ -4,9 +4,8 @@ import {ChatMsg, ChatMsgWithId} from "../../types/types";
 import {AuthContext} from "../../contexts/AuthContext";
 import {addDoc, collection, getDocs, orderBy, query} from "firebase/firestore";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPaperPlane} from "@fortawesome/free-solid-svg-icons";
+import {faPaperPlane, faMessage} from "@fortawesome/free-solid-svg-icons";
 import {db} from "../../firebaseConfig";
-//import the css here
 
 export const Chat = () => {
 	const hide = {
@@ -30,7 +29,6 @@ export const Chat = () => {
 			text: inputValue,
 		};
 		console.log(newMessage);
-		// console.log("my message", newMessage);
 		try {
 			const docRef = await addDoc(collection(db, "chat"), newMessage);
 			console.log("Document written with ID: ", docRef.id);
@@ -50,11 +48,10 @@ export const Chat = () => {
 		const getChats = async () => {
 			const q = query(collection(db, "chat"), orderBy("date"));
 			const snapshot = await getDocs(q);
-			// console.log(snapshot); // to see the whole object
 			const chatArray: ChatMsgWithId[] = [];
 			snapshot.forEach((doc) => {
 				const data = doc.data() as ChatMsg;
-				chatArray.push({...data, id: doc.id}); // id exists on the doc before using .data(), I use a spread operator to push them into a single object
+				chatArray.push({...data, id: doc.id});
 			});
 			setExistingMessages(chatArray);
 		};
@@ -109,10 +106,10 @@ export const Chat = () => {
 			</div>
 			<div className={styles.pop}>
 				<p>
-					<img
+					<FontAwesomeIcon
+						icon={faMessage}
 						onClick={() => setChatopen(!chatopen)}
-						src="https://p7.hiclipart.com/preview/151/758/442/iphone-imessage-messages-logo-computer-icons-message.jpg"
-						alt=""
+						style={{width: "35px", height: "35px", cursor: "pointer"}}
 					/>
 				</p>
 			</div>

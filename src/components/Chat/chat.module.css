@@ -1,9 +1,9 @@
 #chatCon {
 	z-index: 500;
 	width: 100vw;
-	display: flex;
+	/* display: flex;
 	justify-content: flex-end;
-	align-items: flex-end;
+	align-items: flex-end; */
 }
 
 .chatBox {
@@ -17,17 +17,18 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
-	position: absolute;
+	position: fixed;
 	margin-right: 80px;
 	margin-bottom: 5px;
+	right: 0;
 	bottom: 0;
 }
 
 .header {
-	background-color: #3fda73;
+	background-color: #f7eedb;
 	padding: 15px;
 	border-radius: 20px 20px 0 0;
-	color: #fff;
+	color: #052124;
 	font-size: 20px;
 }
 
@@ -103,6 +104,10 @@
 	width: 50px;
 	height: 50px;
 	cursor: pointer;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	padding-bottom: 20px;
 }
 
 .pop p {

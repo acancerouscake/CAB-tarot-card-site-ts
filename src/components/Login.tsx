@@ -1,4 +1,4 @@
-import {type FormEvent, useContext} from "react";
+import {useContext} from "react";
 import AuthForm from "../components/AuthForm";
 import {AuthContext} from "../contexts/AuthContext";
 

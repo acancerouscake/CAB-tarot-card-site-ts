@@ -73,7 +73,6 @@ export default function Cards() {
 			<div className={styles.cardsButtonsLoadingContainer}>
 				<div>
 					<SegmentedControl
-						name="group-1"
 						callback={(val) => setNumberOfCards(val)}
 						defaultIndex={0}
 						controlRef={useRef()}

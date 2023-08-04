@@ -54,7 +54,6 @@ export const AuthContextProvider = (props: Props) => {
 				setUser(null);
 			})
 			.catch((error) => {
-				// An error happened.
 				console.log(error);
 			});
 	};
@@ -67,14 +66,11 @@ export const AuthContextProvider = (props: Props) => {
 		e.preventDefault();
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
-				// Signed in
 				const user = userCredential.user;
 				console.log("new user", user);
 				setUser(user);
 			})
 			.catch((error) => {
-				// const errorCode = error.code;
-				// const errorMessage = error.message;
 				console.log(error);
 			});
 	};
@@ -87,13 +83,10 @@ export const AuthContextProvider = (props: Props) => {
 		e.preventDefault();
 		signInWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
-				// Signed in
 				const user = userCredential.user;
 				setUser(user);
 			})
 			.catch((error) => {
-				// const errorCode = error.code;
-				// const errorMessage = error.message;
 				console.log(error);
 			});
 	};
@@ -101,13 +94,11 @@ export const AuthContextProvider = (props: Props) => {
 	const checkActiveUser = () => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
-				// User is signed in, see docs for a list of available properties
-				// https://firebase.google.com/docs/reference/js/auth.user
-				const uid = user.uid;
 				setUser(user);
+				console.log("user signed in");
 			} else {
+				console.log("user NOT signed in");
 				setUser(null);
-				// User is signed out
 			}
 			setIsChecked(true);
 		});

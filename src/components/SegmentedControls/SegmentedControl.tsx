@@ -1,4 +1,4 @@
-import {useRef, useState, useEffect, MutableRefObject, LegacyRef} from "react";
+import {useState, useEffect, MutableRefObject, LegacyRef} from "react";
 import styles from "./segments.module.css";
 
 interface Segment {
@@ -8,7 +8,6 @@ interface Segment {
 }
 
 interface SegmentedControlType {
-	name: string;
 	segments: Segment[];
 	callback: (value: number, index: number) => void;
 	defaultIndex?: number;
@@ -16,7 +15,6 @@ interface SegmentedControlType {
 }
 
 const SegmentedControl = ({
-	name,
 	segments,
 	callback,
 	defaultIndex = 3,
@@ -64,7 +62,6 @@ const SegmentedControl = ({
 							type="radio"
 							value={item.value}
 							id={item.label}
-							name={name}
 							onChange={() => onInputChange(item.value, i)}
 							checked={i === activeIndex}
 						/>

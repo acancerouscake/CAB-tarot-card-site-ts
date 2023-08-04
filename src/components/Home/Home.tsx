@@ -1,8 +1,8 @@
 import {NavLink} from "react-router-dom";
 import backgroundVideo from "../../assets/vids/backgroundVid.mp4";
 import styles from "./homeStyles.module.css";
+import {TarotCardContextProvider} from "../../contexts/TarotCardContext";
 export default function Home() {
-	//TODO: Make video fit home screen properly
 	return (
 		<>
 			<div
@@ -47,7 +47,9 @@ export default function Home() {
 
 			<div className={styles.wrapper}>
 				<div className={styles.link_wrapper}>
-					<NavLink to="/cards">Get A Reading</NavLink>
+					<TarotCardContextProvider>
+						<NavLink to="/cards">Get A Reading</NavLink>
+					</TarotCardContextProvider>
 
 					<div className={styles.icon}>
 						<svg

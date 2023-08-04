@@ -7,7 +7,7 @@
 }
 
 .chatBox {
-	width: 20vw;
+	width: 25vw;
 	min-width: 250px;
 	height: 80vh;
 	max-height: 800px;
@@ -15,7 +15,7 @@
 	background-color: #eee;
 	color: black;
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 	align-items: flex-end;
 	position: absolute;
 	margin-right: 80px;
@@ -31,13 +31,31 @@
 	font-size: 20px;
 }
 
+.msgsSubmitArea {
+	padding: 5px;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	align-items: center;
+	height: 90%;
+}
+
 .msgArea {
 	overflow: auto;
-	height: 50vh;
-	padding: 10px;
+	padding: 5px;
 	display: flex;
-	justify-content: space-evenly;
 	flex-direction: column;
+	gap: 5px;
+}
+
+.msgStyle {
+	border: solid 1px black;
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
+	border-radius: 25px;
+	word-break: break-word;
+	padding: 5px;
 }
 
 /* #chatCon .chatBox .msgArea .left span {
@@ -60,49 +78,38 @@
 	background-color: #ddd;
 } */
 
-#chatCon .chatBox .footer {
+.footer {
 	border-top: solid black 1px;
-	padding: 10px;
 	display: flex;
-	-webkit-box-pack: justify;
-	-ms-flex-pack: justify;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
-	flex-direction: row;
+	width: 90%;
+	padding: 5px;
 }
 
-#chatCon .chatBox .footer textarea {
+.footer textarea {
 	border: 1px solid #fff;
 	height: 70px;
 	padding: 10px;
-	width: 90%;
 	border-radius: 15px;
 }
 
-#chatCon .chatBox .footer textarea:focus {
+.footer textarea:focus {
 	outline: none;
 }
 
-.footer button {
-	border: none;
-	font-size: 14.5px;
-	color: black;
-	cursor: pointer;
-}
-
-#chatCon .pop {
+.pop {
 	padding-right: 20px;
 	width: 50px;
 	height: 50px;
 	cursor: pointer;
 }
 
-#chatCon .pop p {
+.pop p {
 	text-align: right;
 }
 
-#chatCon .pop img {
+.pop img {
 	border-radius: 50%;
 	width: 50px;
 }
-/*# sourceMappingURL=auto.css.map */

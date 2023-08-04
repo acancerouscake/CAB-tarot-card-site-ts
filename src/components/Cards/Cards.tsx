@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState, useCallback, useRef} from "react";
+import React, {useContext, useState, useCallback, useRef} from "react";
 import {CardType} from "../../types/types";
 import TarotCard from "./TarotCard";
 import Loading from "../Loading";

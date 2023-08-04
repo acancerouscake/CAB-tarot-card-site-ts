@@ -1,6 +1,5 @@
 import React, {useContext} from "react";
 import {AuthContext} from "../contexts/AuthContext";
-import {Navigate} from "react-router-dom";
 
 type Props = {
 	children: React.ReactNode;

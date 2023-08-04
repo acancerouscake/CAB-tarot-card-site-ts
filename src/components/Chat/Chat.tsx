@@ -1,4 +1,4 @@
-import {FormEvent, useContext, useEffect, useState, MouseEvent} from "react";
+import {useContext, useEffect, useState, MouseEvent} from "react";
 import styles from "./chat.module.css";
 import {ChatMsg, ChatMsgWithId} from "../../types/types";
 import {AuthContext} from "../../contexts/AuthContext";
@@ -65,52 +65,46 @@ export const Chat = () => {
 		<div id={styles.chatCon}>
 			<div className={styles.chatBox} style={chatopen ? show : hide}>
 				<div className={styles.header}>Chat with me</div>
-				<div className={styles.msgArea}>
-					{existingMessages.map((msg) => {
-						const timestamp = msg.date;
-						const timestampSeconds = timestamp / 1000;
-						const dateObject = new Date(timestampSeconds);
-						const formattedDate = dateObject.toUTCString();
+				<div className={styles.msgsSubmitArea}>
+					<div className={styles.msgArea}>
+						{existingMessages.map((msg) => {
+							const timestamp = msg.date;
+							const timestampSeconds = timestamp / 1000;
+							const dateObject = new Date(timestampSeconds);
+							const formattedDate = dateObject.toUTCString();
 
-						return (
-							<div
-								key={msg.id}
-								style={{
-									border: "solid 1px black",
-									padding: "0 1em",
-									wordBreak: "break-word",
-									display: "flex",
-									justifyContent: "center",
-									flexDirection: "column",
-									alignItems: "flex-start",
-									height: "100%",
-								}}
-							>
-								<div
-									style={{
-										justifyContent: "center",
-										display: "flex",
-										alignItems: "center",
-									}}
-								>
-									<h5>-{msg.author}-</h5>
-									<i> : {formattedDate}</i>
+							return (
+								<div key={msg.id} className={styles.msgStyle}>
+									<div
+										style={{
+											justifyContent: "center",
+											display: "flex",
+											alignItems: "center",
+											gap: "5px",
+											height: "15px",
+											padding: "5px",
+										}}
+									>
+										<h5>-{msg.author}-</h5>
+										<i> : {formattedDate}</i>
+									</div>
+									<p>{msg.text}</p>
 								</div>
-								<p>{msg.text}</p>
-							</div>
-						);
-					})}
-				</div>
-				<div className={styles.footer}>
-					<textarea
-						placeholder="write a message!"
-						value={inputValue}
-						onChange={(e) => setInputValue(e.target.value)}
-					/>
-					<FontAwesomeIcon
-						icon={faPaperPlane}
-						onClick={(e) => void handleSubmit(e)}
-					/>
+							);
+						})}
+					</div>
+					<div className={styles.footer}>
+						<textarea
+							placeholder="write a message!"
+							value={inputValue}
+							onChange={(e) => setInputValue(e.target.value)}
+						/>
+						<FontAwesomeIcon
+							icon={faPaperPlane}
+							onClick={(e) => void handleSubmit(e)}
+							style={{width: "35px", height: "35px", cursor: "pointer"}}
+						/>
+					</div>
 				</div>
 			</div>
 			<div className={styles.pop}>

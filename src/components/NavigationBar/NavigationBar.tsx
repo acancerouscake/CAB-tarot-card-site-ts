@@ -15,7 +15,7 @@ function NavigationBar() {
 				id="checkboxToggler"
 			></input>
 			<div className={styles.hamburger}>
-				<div className={styles.dataContainer}></div>
+				<div className={styles.dataContainer} style={{overflow: "hidden"}}></div>
 			</div>
 			<div
 				className={styles.menu}

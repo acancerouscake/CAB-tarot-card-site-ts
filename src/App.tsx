@@ -14,7 +14,7 @@ import {
 import {AuthContextProvider} from "./contexts/AuthContext";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import ProtectedLayout from "./components/ProtectedLayout";
-import {TarotCardContextProvider} from "./contexts/tarotCardContext";
+import {TarotCardContextProvider} from "./contexts/TarotCardContext";
 import Login from "./components/Login";
 
 function App() {

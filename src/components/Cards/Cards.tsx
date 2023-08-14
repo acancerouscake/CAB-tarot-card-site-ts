@@ -74,7 +74,7 @@ export default function Cards() {
 				<div>
 					<SegmentedControl
 						callback={(val) => setNumberOfCards(val)}
-						defaultIndex={0}
+						defaultIndex={3}
 						controlRef={useRef()}
 						segments={cardSpreadVals}
 					/>

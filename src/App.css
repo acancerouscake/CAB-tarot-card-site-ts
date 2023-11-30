@@ -1,25 +1,21 @@
 @font-face {
-	font-family: "Lumanosimo";
-	src: local("Lumanosimo-Regular"),
-		url("./assets/fonts/Lumanosimo/Lumanosimo-Regular.ttf") format("truetype");
+	font-family: 'Lumanosimo';
+	src: local('Lumanosimo-Regular'), url('./assets/fonts/Lumanosimo/Lumanosimo-Regular.ttf') format('truetype');
 }
 
 @font-face {
-	font-family: "MoriaCitadel";
-	src: local("MoriaCitadel"),
-		url("./assets/fonts/moria-citadel/MoriaCitadel.ttf") format("truetype");
+	font-family: 'MoriaCitadel';
+	src: local('MoriaCitadel'), url('./assets/fonts/moria-citadel/MoriaCitadel.ttf') format('truetype');
 }
 
 @font-face {
-	font-family: "AmaticSC";
-	src: local("AmaticSC-Regular"),
-		url("./assets/fonts/Amatic_SC/AmaticSC-Regular.ttf") format("truetype");
+	font-family: 'AmaticSC';
+	src: local('AmaticSC-Regular'), url('./assets/fonts/Amatic_SC/AmaticSC-Regular.ttf') format('truetype');
 }
 
 @font-face {
-	font-family: "AmaticSC-Bold";
-	src: local("AmaticSC-Bold"),
-		url("./assets/fonts/Amatic_SC/AmaticSC-Bold.ttf") format("truetype");
+	font-family: 'AmaticSC-Bold';
+	src: local('AmaticSC-Bold'), url('./assets/fonts/Amatic_SC/AmaticSC-Bold.ttf') format('truetype');
 }
 
 AmaticSC-Bold :root {
@@ -76,8 +72,7 @@ a:hover {
 	color: #052124;
 	cursor: pointer;
 	display: inline-flex;
-	font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+	font-family: system-ui, -apple-system, system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: min(1.2vmax, 16px);
 	font-weight: 600;
 	justify-content: center;
@@ -104,6 +99,17 @@ a:hover {
 
 .button-5:hover {
 	transform: translateY(-5px);
+}
+
+.loginDiv a {
+	color: var(--var-main-60);
+}
+
+.loginDiv a:hover {
+	text-decoration: underline;
+	color: white;
+	transform: translateY(-5px);
+	transition: 0.2s ease-in-out;
 }
 
 @media (prefers-color-scheme: dark) {

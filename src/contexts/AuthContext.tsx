@@ -1,39 +1,25 @@
-import {FormEvent, createContext, useEffect, useState} from "react";
-import {
-	type User,
-	createUserWithEmailAndPassword,
-	onAuthStateChanged,
-	signOut,
-	signInWithEmailAndPassword,
-} from "firebase/auth";
-import {auth} from "../firebaseConfig";
+import {FormEvent, createContext, useEffect, useState} from 'react';
+import {type User, createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword} from 'firebase/auth';
+import {auth} from '../firebaseConfig';
 
 export interface ContextType {
 	user: User | null;
-	handleLogin: (
-		e: FormEvent<HTMLFormElement>,
-		email: string,
-		password: string
-	) => void;
+	handleLogin: (e: FormEvent<HTMLFormElement>, email: string, password: string) => void;
 	logout: () => void;
-	handleRegister: (
-		e: FormEvent<HTMLFormElement>,
-		email: string,
-		password: string
-	) => void;
+	handleRegister: (e: FormEvent<HTMLFormElement>, email: string, password: string) => void;
 	isChecked: boolean;
 }
 
 const defaultValue: ContextType = {
 	user: null,
 	handleLogin: () => {
-		throw Error("No provider");
+		throw Error('No provider');
 	},
 	logout: () => {
-		throw Error("No provider");
+		throw Error('No provider');
 	},
 	handleRegister: () => {
-		throw Error("No provider");
+		throw Error('No provider');
 	},
 	isChecked: false,
 };
@@ -45,6 +31,8 @@ interface Props {
 }
 
 export const AuthContextProvider = (props: Props) => {
+	//TODO: Add toasts to login and  auto redirect after login
+
 	const [user, setUser] = useState<User | null>(null);
 	const [isChecked, setIsChecked] = useState(false);
 
@@ -58,16 +46,12 @@ export const AuthContextProvider = (props: Props) => {
 			});
 	};
 
-	const handleRegister = (
-		e: FormEvent<HTMLFormElement>,
-		email: string,
-		password: string
-	) => {
+	const handleRegister = (e: FormEvent<HTMLFormElement>, email: string, password: string) => {
 		e.preventDefault();
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				const user = userCredential.user;
-				console.log("new user", user);
+				console.log('new user', user);
 				setUser(user);
 			})
 			.catch((error) => {
@@ -75,11 +59,7 @@ export const AuthContextProvider = (props: Props) => {
 			});
 	};
 
-	const handleLogin = (
-		e: FormEvent<HTMLFormElement>,
-		email: string,
-		password: string
-	) => {
+	const handleLogin = (e: FormEvent<HTMLFormElement>, email: string, password: string) => {
 		e.preventDefault();
 		signInWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
@@ -95,9 +75,9 @@ export const AuthContextProvider = (props: Props) => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				setUser(user);
-				console.log("user signed in");
+				console.log('user signed in');
 			} else {
-				console.log("user NOT signed in");
+				console.log('user NOT signed in');
 				setUser(null);
 			}
 			setIsChecked(true);
@@ -108,11 +88,5 @@ export const AuthContextProvider = (props: Props) => {
 		checkActiveUser();
 	}, []);
 
-	return (
-		<AuthContext.Provider
-			value={{user, handleLogin, logout, handleRegister, isChecked}}
-		>
-			{props.children}
-		</AuthContext.Provider>
-	);
+	return <AuthContext.Provider value={{user, handleLogin, logout, handleRegister, isChecked}}>{props.children}</AuthContext.Provider>;
 };

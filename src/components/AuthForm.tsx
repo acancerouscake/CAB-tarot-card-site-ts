@@ -32,6 +32,7 @@ const AuthForm = ({title, handleSubmit}: Props) => {
 				/>
 				<button type="submit">{title}</button>
 			</form>
+			
 		</div>
 	);
 };

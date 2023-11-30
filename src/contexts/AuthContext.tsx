@@ -1,6 +1,8 @@
 import {FormEvent, createContext, useEffect, useState} from 'react';
 import {type User, createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword} from 'firebase/auth';
 import {auth} from '../firebaseConfig';
+import {toast} from 'react-toastify';
+import {useNavigate} from 'react-router-dom';
 
 export interface ContextType {
 	user: User | null;
@@ -35,14 +37,20 @@ export const AuthContextProvider = (props: Props) => {
 
 	const [user, setUser] = useState<User | null>(null);
 	const [isChecked, setIsChecked] = useState(false);
+	const redirect = useNavigate();
 
 	const logout = () => {
 		signOut(auth)
 			.then(() => {
+				toast.success(`Logout successful, Bye ${user?.displayName as string}, redirecting...`);
 				setUser(null);
+				toast.clearWaitingQueue();
+				setTimeout(() => redirect('/login'), 2000);
 			})
 			.catch((error) => {
 				console.log(error);
+				toast.error(`${error as string}`);
+				toast.clearWaitingQueue();
 			});
 	};
 
@@ -53,9 +61,13 @@ export const AuthContextProvider = (props: Props) => {
 				const user = userCredential.user;
 				console.log('new user', user);
 				setUser(user);
+				setTimeout(() => redirect('/'), 2000);
+				toast.success(`Signup Successful, Hi ${user.displayName as string}, logging in... `);
+				toast.clearWaitingQueue();
 			})
 			.catch((error) => {
-				console.log(error);
+				toast.error(`Something went wrong - ${error as string}`);
+				toast.clearWaitingQueue();
 			});
 	};
 
@@ -65,9 +77,13 @@ export const AuthContextProvider = (props: Props) => {
 			.then((userCredential) => {
 				const user = userCredential.user;
 				setUser(user);
+				toast.success(`Login Successful,  Hi ${user.displayName as string},`);
+				toast.clearWaitingQueue();
+				setTimeout(() => redirect('/'), 2000);
 			})
 			.catch((error) => {
-				console.log(error);
+				toast.error(`${error as string}`);
+				toast.clearWaitingQueue();
 			});
 	};
 
@@ -75,10 +91,12 @@ export const AuthContextProvider = (props: Props) => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				setUser(user);
-				console.log('user signed in');
+				toast.success(`User is already logged in...`);
+				toast.clearWaitingQueue();
 			} else {
-				console.log('user NOT signed in');
 				setUser(null);
+				toast.error(`Something went wrong - user not logged in`);
+				toast.clearWaitingQueue();
 			}
 			setIsChecked(true);
 		});

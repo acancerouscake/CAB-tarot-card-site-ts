@@ -36,7 +36,7 @@
 TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
 .hamburger > div::before,
 .hamburger > div::after {
-	content: "";
+	content: '';
 	position: absolute;
 	top: -10px;
 	background: white;
@@ -93,6 +93,7 @@ TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
 	display: none;
 	visibility: none;
 	width: 100%;
+	min-width: 100px;
 	background-color: rgb(255, 238, 237);
 	padding-top: 40px;
 }

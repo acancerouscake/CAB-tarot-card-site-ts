@@ -28,17 +28,20 @@ export default function Cards() {
 	const {tarotCards, loading} = useContext(TarotCardContext);
 	const [numberOfCards, setNumberOfCards] = useState<number>(3);
 	const [dealtCards, setDealtCards] = useState<DealtCardType[]>([]);
+	const [dealing, setDealing] = useState<boolean>(false);
 
 	const dealCards = useCallback(() => {
 		if (!Array.isArray(tarotCards)) {
 			console.error('Invalid tarotCards in context.');
 			return;
 		}
+		setDealing(true);
 		const shuffled = [...tarotCards].sort(() => Math.random() - 0.5);
 		const selectedSpread = cardSpreadVals.find((spread) => spread.value === numberOfCards);
 
 		if (!selectedSpread) {
 			console.error('Invalid spread selected');
+			setDealing(false);
 			return;
 		}
 
@@ -47,17 +50,15 @@ export default function Cards() {
 			meaning: selectedSpread.meanings[index],
 		}));
 
-		setDealtCards(dealtCardsWithMeanings);
+		setTimeout(() => {
+			setDealtCards(dealtCardsWithMeanings);
+			setDealing(false);
+		}, 2000);
 	}, [tarotCards, numberOfCards, cardSpreadVals]);
 
 	const handleNumberOfCardsChange = useCallback((val: number) => {
 		setNumberOfCards(val);
 	}, []);
-
-	// const renderControls = useCallback(
-	// 	() => ,
-	// 	[cardSpreadVals, handleNumberOfCardsChange, dealCards]
-	// );
 
 	return (
 		<div className={styles.componentContainer}>
@@ -84,15 +85,13 @@ export default function Cards() {
 				)}
 			</div>
 			<div className={styles.cardResultContainer}>
-				{loading ? (
-					<Spinner />
-				) : (
-					dealtCards.map((card, idx) => (
-						<React.Fragment key={idx}>
-							<TarotCard card={card} num={dealtCards.length} idx={idx} meaning={card.meaning} />
-						</React.Fragment>
-					))
-				)}
+				{dealing
+					? Array.from({length: numberOfCards}).map((_, idx) => <Spinner key={idx} />)
+					: dealtCards.map((card, idx) => (
+							<React.Fragment key={idx}>
+								<TarotCard card={card} num={dealtCards.length} idx={idx} meaning={card.meaning} />
+							</React.Fragment>
+					  ))}
 			</div>
 		</div>
 	);

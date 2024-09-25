@@ -89,7 +89,7 @@ export default function Cards() {
 				) : (
 					dealtCards.map((card, idx) => (
 						<React.Fragment key={idx}>
-							<TarotCard card={card} num={dealtCards.length} idx={idx} meaning={card.meaning} />{' '}
+							<TarotCard card={card} num={dealtCards.length} idx={idx} meaning={card.meaning} />
 						</React.Fragment>
 					))
 				)}

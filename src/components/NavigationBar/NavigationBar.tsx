@@ -10,68 +10,40 @@ function NavigationBar() {
 	const {user, logout} = useContext(AuthContext);
 	return (
 		<>
-			<input type='checkbox' className={styles.toggler} id='checkboxToggler'></input>
+			<input type="checkbox" className={styles.toggler} id="checkboxToggler"></input>
 			<div className={styles.hamburger}>
 				<div className={styles.dataContainer} style={{overflow: 'hidden'}}></div>
 			</div>
-			<div
-				className={styles.menu}
-				// onClick={() => {
-				// 	const toggler = document.getElementById("checkboxToggler");
-				// 	toggler?.removeAttribute("checked");
-
-				// 	console.log(toggler);
-				// }}
-			>
+			<div className={styles.menu}>
 				<nav>
-					<NavLink
-						to='/'
-						style={({isActive}) => {
-							return isActive ? {color: 'orange '} : {color: ''};
-						}}>
-						Home
-					</NavLink>
-					<TarotCardContextProvider>
-						<NavLink
-							to='/cards'
-							style={({isActive}) => {
-								return isActive ? {color: 'orange '} : {color: ''};
-							}}>
-							Tarot Reading
+					<div className={styles.navLinksContainer}>
+						<NavLink to="/" style={({isActive}) => ({ color: isActive ? 'orange' : '' })}>
+							Home
 						</NavLink>
-					</TarotCardContextProvider>
-
-					<NavLink
-						to='/about'
-						style={({isActive}) => {
-							return isActive ? {color: 'orange '} : {color: ''};
-						}}>
-						About
-					</NavLink>
-					{user ? (
-						<NavLink
-							to='/history'
-							style={({isActive}) => {
-								return isActive ? {color: 'orange '} : {color: ''};
-							}}>
-							History
+						<TarotCardContextProvider>
+							<NavLink to="/cards" style={({isActive}) => ({ color: isActive ? 'orange' : '' })}>
+								Tarot Reading
+							</NavLink>
+						</TarotCardContextProvider>
+						<NavLink to="/about" style={({isActive}) => ({ color: isActive ? 'orange' : '' })}>
+							About
 						</NavLink>
-					) : (
-						<></>
-					)}
-
-					{user ? (
-						<button className={'button-5'} style={{marginTop: 20}} onClick={logout}>
-							Logout
-						</button>
-					) : (
-						<NavLink to='/login'>Login</NavLink>
-					)}
+						{user && (
+							<NavLink to="/history" style={({isActive}) => ({ color: isActive ? 'orange' : '' })}>
+								History
+							</NavLink>
+						)}
+					</div>
+					<div className={styles.logoutContainer}>
+						{user ? (
+							<button className={'button-5'} onClick={logout}>
+								Logout
+							</button>
+						) : (
+							<NavLink to="/login">Login</NavLink>
+						)}
+					</div>
 				</nav>
-
-				<div>
-					<Outlet />
-				</div>
 			</div>
 		</>
 	);

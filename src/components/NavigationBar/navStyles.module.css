@@ -70,76 +70,98 @@ TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
 /* MAIN MENU WITH THE BACKGROUND AND THE TEXT :  */
 .menu {
 	background-color: rgb(255, 238, 237);
-	position: absolute;
-	width: 0vw;
+	position: fixed;
+	width: 0;
 	left: 0;
 	top: 0;
 	height: 100vh;
 	z-index: 40;
-	/* APPLYING TRANSITION TO THE MENU :  */
 	transition: all 0.5s ease;
+	overflow-y: hidden;
 }
 
 /* IF THE TOGGLER IS CHECKED, THEN INCREASE THE WIDTH OF THE MENU TO 30% , CREATING A SMOOTH EFFECT :  */
 
 .toggler:checked ~ .menu {
 	width: 20vw;
+	min-width: 200px;
+}
+
+nav {
+	display: flex;
+	flex-direction: column;
 	height: 100%;
-	transition: all 0.3s ease;
+	padding: 20px 20px;
+	overflow-y: hidden;
 }
 
-.menu > nav {
-	position: absolute;
-	display: none;
-	visibility: none;
-	width: 100%;
-	min-width: 100px;
-	background-color: rgb(255, 238, 237);
-	padding-top: 40px;
-}
-
-.toggler:checked ~ .menu > nav {
+.navLinksContainer {
+	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: flex-start;
+	padding-top: 40px;
+}
+
+.logoutContainer {
+	margin-top: auto;
+	padding-bottom: 50px;
+	margin-bottom: 20px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.toggler:checked ~ .menu nav .navLinksContainer,
+.toggler:checked ~ .menu nav .logoutContainer {
 	visibility: visible;
 	transition: visibility 0.4s ease;
-	transition-delay: 0.1s;
+	transition-delay: 0.2s;
+}
+
+.toggler:checked ~ .menu nav .navLinksContainer > a,
+.toggler:checked ~ .menu nav .logoutContainer > a,
+.toggler:checked ~ .menu nav .logoutContainer > button {
 	visibility: visible;
-	height: 100vh;
-	z-index: 40;
+	transition: visibility 0.4s ease;
+	transition-delay: 0.2s;
+	margin-top: 15px;
+	font-size: min(2vmax, 24px);
 }
 
 /* STYLING THE menu  */
 
-.menu > nav > a::before {
+.menu > nav > .navLinksContainer > a::before {
 	color: black;
 	visibility: hidden;
 	cursor: none;
 }
 
-.menu > nav > a:hover::before {
+.menu > nav > .navLinksContainer > a:hover::before {
 	color: black;
 	visibility: hidden;
 	cursor: none;
 }
 
-.menu > nav > a::after {
+.menu > nav > .navLinksContainer > a::after {
 	color: black;
 	visibility: visible;
 }
 
 /* WHEN THE TOGGLER IS CHECKED, CHANGE THE VISIBILITY TO VISIBLE :  */
 
-.toggler:checked ~ .menu > nav > a {
+.toggler:checked ~ .menu > nav > .navLinksContainer {
+	margin-top: 25px;
+}
+
+.toggler:checked ~ .menu > nav > .navLinksContainer > a {
 	transition: visibility 0.4s ease;
 	visibility: visible;
 	transition-delay: 0.2s;
-	margin-top: 15px;
+	margin-top: 20px;
 	font-size: min(2vmax, 44px);
 }
 
-.toggler:checked ~ .menu > nav > a:hover {
+.toggler:checked ~ .menu > nav > .navLinksContainer > a:hover {
 	color: orange;
 }

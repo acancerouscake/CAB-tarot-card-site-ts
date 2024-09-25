@@ -87,8 +87,8 @@ a:hover {
 	-webkit-user-select: none;
 	touch-action: manipulation;
 	vertical-align: baseline;
-	width: 15vw;
-	max-width: 110px;
+	width: 150px;
+	min-width: 100px;
 }
 
 .button-5:hover,

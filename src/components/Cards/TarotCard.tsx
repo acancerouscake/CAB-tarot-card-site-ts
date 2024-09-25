@@ -27,23 +27,26 @@ const TarotCard = ({card, num, idx, meaning}: TarotCardProps) => {
 		setSelectedCard(null);
 	};
 
+	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+	React.useEffect(() => {
+		const handleResize = () => {
+			setWindowWidth(window.innerWidth);
+		};
+
+		window.addEventListener('resize', handleResize);
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, [windowWidth]);
+
 	const getTransformStyle = (num: number, idx: number): React.CSSProperties => {
-		idx++;
-		const curl = Math.pow(num, 2) * 10;
-		const deg = idx > 1 ? -idx * 3 : 2;
-		let degs = deg / 9;
-		// let down = initialDown / 2;
-		const initialOver = curl;
-		let over = initialOver / 10;
+		const angle = (idx - (num - 1) / 2) * 10;
+		const translateX = (idx - (num - 1) / 2) * (windowWidth < 768 ? -50.1 : 20);
+		const translateY = Math.abs(idx - (num - 1) / 2) * 10;
 
-		if (num > 1) {
-			degs -= deg / idx;
-			// down -= initialDown / (num - 1);
-			over -= initialOver / (num - 1);
-		}
-
-		const hoverTransform = `translateY(-100px) translateX(${-50 + over * -1}%) rotate(${degs}deg)`;
-		const baseTransform = `translateX(${-50 + over * -1}%) rotate(${degs}deg)`;
+		const hoverTransform = `translateY(${translateY - 20}px) translateX(${translateX}px) rotate(${angle}deg)`;
+		const baseTransform = `translateY(${translateY}px) translateX(${translateX}px) rotate(${angle}deg)`;
 
 		return {
 			display: 'flex',
@@ -52,8 +55,8 @@ const TarotCard = ({card, num, idx, meaning}: TarotCardProps) => {
 			flexDirection: 'column',
 			textAlign: 'center',
 			border: '1px solid black',
-			marginLeft: '-175px',
-			width: '300px',
+			marginLeft: windowWidth < 768 ? '-130px' : '-200px',
+			width: windowWidth < 768 ? '200px' : '270px',
 			color: 'black',
 			backgroundColor: 'white',
 			transform: isHovered && !isModalOpen ? hoverTransform : baseTransform,

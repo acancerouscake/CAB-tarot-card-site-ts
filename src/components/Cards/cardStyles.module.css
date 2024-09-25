@@ -3,7 +3,6 @@
 	justify-content: flex-start;
 	align-items: center;
 	flex-direction: column;
-	gap: 100px;
 	width: 100vw;
 	height: 100vh;
 }
@@ -14,8 +13,7 @@
 	align-items: center;
 	flex-direction: row;
 	flex-wrap: wrap;
-	height: 300;
-	gap: 40px;
+	height: 160px;
 }
 
 .cardsButtonsContainer {
@@ -55,7 +53,7 @@
 	touch-action: manipulation;
 	vertical-align: baseline;
 	width: 90px;
-	height: 30px;
+	height: 55px;
 }
 
 .cardResultContainer {

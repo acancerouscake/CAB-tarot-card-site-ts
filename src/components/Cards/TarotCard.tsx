@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {CardType} from '../../types/types';
 import TarotCardModal from './TarotCardModal';
 
-
 interface TarotCardProps {
 	card: CardType;
 	num: number;
@@ -71,7 +70,13 @@ const TarotCard = ({card, num, idx, meaning}: TarotCardProps) => {
 	return selectedCard ? (
 		<TarotCardModal card={card} isModalOpen={isModalOpen} idx={idx} num={num} onClose={handleCloseModal} meaning={meaning} />
 	) : (
-		<div onMouseEnter={() => setIsHovered(!isModalOpen)} onMouseLeave={() => setIsHovered(false)} style={getTransformStyle(num, idx)} key={idx} onClick={handleCardClick}>
+		<div
+			onMouseEnter={() => setIsHovered(!isModalOpen)}
+			onMouseLeave={() => setIsHovered(false)}
+			style={getTransformStyle(num, idx)}
+			key={idx}
+			onClick={handleCardClick}
+			aria-label={name}>
 			<h3
 				style={{
 					fontSize: '24px',
@@ -84,7 +89,7 @@ const TarotCard = ({card, num, idx, meaning}: TarotCardProps) => {
 			<h2
 				style={{
 					fontSize: '30px',
-					letterSpacing: '5px',
+					letterSpacing: windowWidth < 768 ? '1px' : '4px',
 					fontWeight: 400,
 					lineHeight: '1',
 					height: '5px',

@@ -53,7 +53,7 @@ export default function Cards() {
 		setTimeout(() => {
 			setDealtCards(dealtCardsWithMeanings);
 			setDealing(false);
-		}, 2000);
+		}, 2300);
 	}, [tarotCards, numberOfCards, cardSpreadVals]);
 
 	const handleNumberOfCardsChange = useCallback((val: number) => {
@@ -88,10 +88,10 @@ export default function Cards() {
 				{dealing
 					? Array.from({length: numberOfCards}).map((_, idx) => <Spinner key={idx} />)
 					: dealtCards.map((card, idx) => (
-							<React.Fragment key={idx}>
-								<TarotCard card={card} num={dealtCards.length} idx={idx} meaning={card.meaning} />
-							</React.Fragment>
-					  ))}
+						<React.Fragment key={idx}>
+							<TarotCard card={card} num={dealtCards.length} idx={idx} meaning={card.meaning} />
+						</React.Fragment>
+					))}
 			</div>
 		</div>
 	);

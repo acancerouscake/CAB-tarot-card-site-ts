@@ -1,5 +1,5 @@
-import {CardType} from "../../types/types";
-import styles from "./cardStyles.module.css";
+import {CardType} from '../../types/types';
+import styles from './cardStyles.module.css';
 
 interface TarotCardProps {
 	card: CardType | null;
@@ -7,9 +7,10 @@ interface TarotCardProps {
 	isModalOpen: boolean;
 	num: number;
 	idx: number;
+	meaning: string;
 }
 
-const TarotCardModal = ({card, onClose}: TarotCardProps) => {
+const TarotCardModal = ({card, onClose, meaning}: TarotCardProps) => {
 	const {name, type, meaning_up, desc, img} = card as CardType;
 
 	return (
@@ -17,55 +18,45 @@ const TarotCardModal = ({card, onClose}: TarotCardProps) => {
 			<div
 				onClick={onClose}
 				style={{
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "space-evenly",
-					flexDirection: "row",
-					textAlign: "center",
-					width: "100vw",
-					cursor: "zoom-out",
-				}}
-			>
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'space-evenly',
+					flexDirection: 'row',
+					textAlign: 'center',
+					width: '100vw',
+					cursor: 'zoom-out',
+				}}>
 				<img
 					src={img}
 					style={{
-						border: "20px white  solid",
-						borderRadius: "15px",
-						width: "20vw",
+						border: '20px white  solid',
+						borderRadius: '15px',
+						width: '20vw',
 					}}
-					title={name}
-				></img>
+					title={name}></img>
 				<div
 					style={{
-						display: "flex",
-						alignItems: "center",
-						justifyContent: "space-around",
-						flexDirection: "column",
-						textAlign: "center",
-						width: "50vw",
-					}}
-				>
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'space-around',
+						flexDirection: 'column',
+						textAlign: 'center',
+						width: '50vw',
+					}}>
 					<h2
 						style={{
-							fontSize: "34px",
-							letterSpacing: "8px",
-							textDecoration: "underline",
-						}}
-					>
+							fontSize: '34px',
+							letterSpacing: '8px',
+							textDecoration: 'underline',
+						}}>
 						{name}
 					</h2>
-					<p style={{fontSize: "20px"}}>Arcana {type}</p>
-					<p style={{fontSize: "min(2vmax, 22px)"}}>{desc}</p>
-					<p style={{fontSize: "min(2vmax, 20px)"}}>Meaning: {meaning_up}</p>
+					<p style={{fontSize: '22px'}}>Arcana {type}</p>
+					<p style={{fontSize: 'min(2vmax, 24px)', boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.5)'}}>{desc}</p>
+					<p style={{fontSize: 'min(2vmax, 22px)', boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.5)'}}>Meaning: {meaning}</p>
 				</div>
-				{
-					//fixes scaling text issue in fontSize
-				}
-				<button
-					className="button-5"
-					style={{top: 10, right: 10, position: "absolute", cursor: "pointer"}}
-					onClick={onClose}
-				>
+
+				<button className="button-5" style={{top: 10, right: 10, position: 'absolute', cursor: 'pointer'}} onClick={onClose}>
 					X
 				</button>
 			</div>

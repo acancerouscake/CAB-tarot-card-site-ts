@@ -1,14 +1,14 @@
-import {createContext, useEffect, useState} from "react";
-import {CardResponse, CardType, CardsJSON} from "../types/types";
-import * as TarotImages from "../json/tarot-images.json";
+import {createContext, useEffect, useState} from 'react';
+import {CardResponse, CardType, CardsJSON} from '../types/types';
+import * as TarotImages from '../json/tarot-images.json';
 
 export interface ContextType {
-	tarotCards: CardType[] | "No provider";
+	tarotCards: CardType[] | 'No provider';
 	loading: boolean;
 }
 
 const defaultValue: ContextType = {
-	tarotCards: "No provider",
+	tarotCards: 'No provider',
 	loading: false,
 };
 
@@ -18,7 +18,7 @@ interface Props {
 	children: React.ReactNode;
 }
 
-export const TarotCardContextProvider = (props: Props) => {
+export const TarotCardContextProvider = ({children}: Props) => {
 	const {cards} = TarotImages as CardsJSON;
 	const [tarotCards, setTarotCards] = useState<CardType[]>([]);
 	const [loading, setIsLoading] = useState(false);
@@ -27,22 +27,26 @@ export const TarotCardContextProvider = (props: Props) => {
 		setIsLoading(true);
 		try {
 			const response = await fetch(`https://tarot-api-3hv5.onrender.com/api/v1/`);
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
 			const data = (await response.json()) as CardResponse;
 			getImagesForCards(data.cards);
-		} catch (e) {
-			console.log("error :>> ", e);
+		} catch (error) {
+			console.error('Failed to fetch cards:', error);
 			setIsLoading(false);
 		}
 	};
+
 	const getImagesForCards = (apiCardData: CardType[]) => {
-		apiCardData.forEach((cardAPI) => {
-			cards.forEach((cardJSON) => {
-				if (cardAPI.name === cardJSON.name) {
-					return (cardAPI.img = cardJSON.img);
-				}
-			});
+		const updatedCards = apiCardData.map((cardAPI) => {
+			const matchedCard = cards.find((cardJSON) => cardAPI.name === cardJSON.name);
+			if (matchedCard) {
+				cardAPI.img = matchedCard.img;
+			}
+			return cardAPI;
 		});
-		randomizeCards(apiCardData);
+		randomizeCards(updatedCards);
 	};
 
 	const randomizeCards = (cardsArg: CardType[]) => {
@@ -55,14 +59,10 @@ export const TarotCardContextProvider = (props: Props) => {
 	};
 
 	useEffect(() => {
-		fetchCards().catch((e) => {
-			console.log("e :>> ", e);
+		fetchCards().catch((error) => {
+			console.error('Error in useEffect:', error);
 		});
 	}, []);
 
-	return (
-		<TarotCardContext.Provider value={{tarotCards, loading}}>
-			{props.children}
-		</TarotCardContext.Provider>
-	);
+	return <TarotCardContext.Provider value={{tarotCards, loading}}>{children}</TarotCardContext.Provider>;
 };

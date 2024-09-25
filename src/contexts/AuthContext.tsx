@@ -95,7 +95,7 @@ export const AuthContextProvider = (props: Props) => {
 				toast.clearWaitingQueue();
 			} else {
 				setUser(null);
-				toast.error(`Something went wrong - user not logged in`);
+				toast.error(`User not logged in`);
 				toast.clearWaitingQueue();
 			}
 			setIsChecked(true);

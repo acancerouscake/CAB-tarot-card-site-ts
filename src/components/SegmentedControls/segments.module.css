@@ -13,8 +13,8 @@
 	background-color: white;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
-	max-width: 500px;
-	padding: 12px;
+	max-width: 300px;
+	padding: 1px;
 	margin: auto;
 	overflow: hidden;
 	position: relative;
@@ -34,7 +34,7 @@
 }
 
 .segment {
-	min-width: 120px;
+	min-width: 60px;
 	position: relative;
 	text-align: center;
 	z-index: 1;

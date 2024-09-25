@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import {NavLink, Outlet} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {AuthContext} from '../../contexts/AuthContext';
 import styles from './navStyles.module.css';
 import {TarotCardContextProvider} from '../../contexts/TarotCardContext';
@@ -17,19 +17,19 @@ function NavigationBar() {
 			<div className={styles.menu}>
 				<nav>
 					<div className={styles.navLinksContainer}>
-						<NavLink to="/" style={({isActive}) => ({ color: isActive ? 'orange' : '' })}>
+						<NavLink to="/" style={({isActive}) => ({color: isActive ? 'orange' : ''})}>
 							Home
 						</NavLink>
 						<TarotCardContextProvider>
-							<NavLink to="/cards" style={({isActive}) => ({ color: isActive ? 'orange' : '' })}>
+							<NavLink to="/cards" style={({isActive}) => ({color: isActive ? 'orange' : ''})}>
 								Tarot Reading
 							</NavLink>
 						</TarotCardContextProvider>
-						<NavLink to="/about" style={({isActive}) => ({ color: isActive ? 'orange' : '' })}>
+						<NavLink to="/about" style={({isActive}) => ({color: isActive ? 'orange' : ''})}>
 							About
 						</NavLink>
 						{user && (
-							<NavLink to="/history" style={({isActive}) => ({ color: isActive ? 'orange' : '' })}>
+							<NavLink to="/history" style={({isActive}) => ({color: isActive ? 'orange' : ''})}>
 								History
 							</NavLink>
 						)}

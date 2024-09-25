@@ -26,9 +26,11 @@ const SegmentedControl: React.FC<SegmentedControlProps> = ({segments, callback, 
 	useEffect(() => {
 		if (controlRef.current && segmentRefs.current[activeIndex]) {
 			const activeSegment = segmentRefs.current[activeIndex];
-			const {offsetWidth, offsetLeft} = activeSegment;
-			controlRef.current.style.setProperty('--highlight-width', `${offsetWidth as number}px`);
-			controlRef.current.style.setProperty('--highlight-x-pos', `${offsetLeft as number}px`);
+			if (activeSegment) {
+				const {offsetWidth, offsetLeft} = activeSegment;
+				controlRef.current.style.setProperty('--highlight-width', `${offsetWidth}px`);
+				controlRef.current.style.setProperty('--highlight-x-pos', `${offsetLeft}px`);
+			}
 		}
 	}, [activeIndex]);
 

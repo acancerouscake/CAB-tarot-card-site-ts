@@ -11,7 +11,7 @@ interface TarotCardProps {
 }
 
 const TarotCardModal = ({card, onClose, meaning}: TarotCardProps) => {
-	const {name, type, meaning_up, desc, img} = card as CardType;
+	const {name, type, desc, img} = card as CardType;
 
 	return (
 		<div className={styles.modal} onClick={(e) => e.stopPropagation()}>

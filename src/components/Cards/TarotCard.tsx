@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {CardType} from '../../types/types';
 import TarotCardModal from './TarotCardModal';
-import styles from './cardStyles.module.css';
+
 
 interface TarotCardProps {
 	card: CardType;
